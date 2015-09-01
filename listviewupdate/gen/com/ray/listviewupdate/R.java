@@ -5,7 +5,7 @@
  * should not be modified by hand.
  */
 
-package com.example.myviewpager;
+package com.ray.listviewupdate;
 
 public final class R {
     public static final class attr {
@@ -22,19 +22,20 @@ public final class R {
     }
     public static final class drawable {
         public static final int ic_launcher=0x7f020000;
-        public static final int item01=0x7f020001;
-        public static final int item02=0x7f020002;
-        public static final int item03=0x7f020003;
-        public static final int item04=0x7f020004;
-        public static final int item05=0x7f020005;
+        public static final int updatearrow=0x7f020001;
     }
     public static final class id {
-        public static final int action_settings=0x7f080002;
-        public static final int viewGroup=0x7f080001;
-        public static final int viewPager=0x7f080000;
+        public static final int action_settings=0x7f080006;
+        public static final int arrow=0x7f080004;
+        public static final int lastupdate_time=0x7f080003;
+        public static final int layout=0x7f080001;
+        public static final int listView1=0x7f080000;
+        public static final int progress=0x7f080005;
+        public static final int tip=0x7f080002;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
+        public static final int header_layout=0x7f030001;
     }
     public static final class menu {
         public static final int main=0x7f070000;
