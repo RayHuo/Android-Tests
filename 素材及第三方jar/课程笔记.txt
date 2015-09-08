@@ -1,0 +1,38 @@
+http://developer.android.com/training/animation/screen-slide.html
+
+属性动画->ninooldandroids进行实现
+
+A页切换到B页
+A页的position 0.0 ~ -1
+B页的position 1 ~ 0.0
+
+1、ViewPager.setPageTransformer实现切换动画
+默认为3.0API
+2、修改ViewPager内部代码+使用nineoldandroids代替属性动画实现向下兼容
+3、观察API的规律，自定义我们的切换动画
+
+4、自定义ViewPager实现动画切换效果
+Translation Scale 
+a、需要拿到当前切换的两个View -> 通过Map存储与获取
+b、我们一个动画的梯度值 ->通过offset , offsetPixels
+
+
+position->view
+0~1
+position , position +1 
+1~0
+position , position + 1
+
+
+0~1 ： position = 0 ; offset: 0~1  
+1~0 :  position = 0 ; offset: 1~0 
+
+0~pageSize-1 
+
+getCurrentItem();
+getCurrentItem()-1;
+getCurrentItem()+1;
+
+
+
+
