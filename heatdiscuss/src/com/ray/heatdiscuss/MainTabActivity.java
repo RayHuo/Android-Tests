@@ -5,7 +5,11 @@ import java.util.List;
 
 import android.R.integer;
 import android.app.Activity;
+//import android.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
@@ -18,16 +22,17 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class MainTabActivity extends Activity implements OnClickListener{
+public class MainTabActivity extends FragmentActivity implements OnClickListener{
 	
 	private ViewPager mViewPager = null;
-	private PagerAdapter mPagerAdapter = null;
-	private List<View> mViewList = new ArrayList<View>();
+	private FragmentPagerAdapter mFPagerAdapter = null;
+//	private List<View> mViewList = new ArrayList<View>();
+	private List<Fragment> mFragments = new ArrayList<Fragment>();
 	
-	private LinearLayout mArticleLayout = null;			// "文章"tab
-	private LinearLayout mFriendsArticleLayout = null;	// "友笔"tab
-	private LinearLayout mFriendsLayout = null;			// "知己"tab
-	private LinearLayout mMineLayout = null;			// "吾"tab
+	private LinearLayout mArticleLayout = null;			// "文章"tab按钮
+	private LinearLayout mFriendsArticleLayout = null;	// "友笔"tab按钮
+	private LinearLayout mFriendsLayout = null;			// "知己"tab按钮
+	private LinearLayout mMineLayout = null;			// "吾"tab按钮
 	
 	// 对应的bottom部分按钮
 	private ImageButton mArticleBtn = null;
@@ -67,47 +72,41 @@ public class MainTabActivity extends Activity implements OnClickListener{
 		mFriendsLayout.setOnClickListener(this);
 		mMineLayout.setOnClickListener(this);
 		
-		LayoutInflater mInflater = LayoutInflater.from(this);
-		View tab_article = mInflater.inflate(R.layout.article_layout, null);
-		View tab_friendsarticle = mInflater.inflate(R.layout.friendsarticle_layout, null);
-		View tab_friends = mInflater.inflate(R.layout.friends_layout, null);
-		View tab_mine = mInflater.inflate(R.layout.mine_layout, null);
-		mViewList.add(tab_article);
-		mViewList.add(tab_friendsarticle);
-		mViewList.add(tab_friends);
-		mViewList.add(tab_mine);
+//		LayoutInflater mInflater = LayoutInflater.from(this);
+//		View tab_article = mInflater.inflate(R.layout.article_layout, null);
+//		View tab_friendsarticle = mInflater.inflate(R.layout.friendsarticle_layout, null);
+//		View tab_friends = mInflater.inflate(R.layout.friends_layout, null);
+//		View tab_mine = mInflater.inflate(R.layout.mine_layout, null);
+//		mViewList.add(tab_article);
+//		mViewList.add(tab_friendsarticle);
+//		mViewList.add(tab_friends);
+//		mViewList.add(tab_mine);
+		
+		Fragment frag_article = new ArticleFragment();
+		Fragment frag_friendsarticle = new FriendsArticleFragment();
+		Fragment frag_friends = new FriendsFragment();
+		Fragment frag_mine = new MineFragment();
+		mFragments.add(frag_article);
+		mFragments.add(frag_friendsarticle);
+		mFragments.add(frag_friends);
+		mFragments.add(frag_mine);
 		
 		mViewPager = (ViewPager)findViewById(R.id.m_viewpager);
-		mPagerAdapter = new PagerAdapter() {
-			
-			@Override
-			public void destroyItem(ViewGroup container, int position,
-					Object object)
-			{
-				container.removeView(mViewList.get(position));
-			}
-
-			@Override
-			public Object instantiateItem(ViewGroup container, int position)
-			{
-				View view = mViewList.get(position);
-				container.addView(view);
-				return view;
-			}
-			
-			@Override
-			public boolean isViewFromObject(View arg0, Object arg1) {
-				// TODO Auto-generated method stub
-				return arg0 == arg1;
-			}
+		mFPagerAdapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
 			
 			@Override
 			public int getCount() {
 				// TODO Auto-generated method stub
-				return mViewList.size();
+				return mFragments.size();
+			}
+			
+			@Override
+			public Fragment getItem(int arg0) {
+				// TODO Auto-generated method stub
+				return mFragments.get(arg0);
 			}
 		};
-		mViewPager.setAdapter(mPagerAdapter);
+		mViewPager.setAdapter(mFPagerAdapter);
 		
 		// 在tab更换的时候，修改top中的文字，同时更改bottom中的高亮项
 		mViewPager.setOnPageChangeListener(new OnPageChangeListener() {
