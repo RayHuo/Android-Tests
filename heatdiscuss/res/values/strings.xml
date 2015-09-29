@@ -3,5 +3,9 @@
 
     <string name="app_name">热论</string>
     <string name="action_settings">Settings</string>
-
+    
+	<string name="tab_text_article">文章</string>
+	<string name="tab_text_friendsarticle">知己文章</string>
+	<string name="tab_text_friends">知己列表</string>
+	<string name="tab_text_mine">个人信息</string>
 </resources>
