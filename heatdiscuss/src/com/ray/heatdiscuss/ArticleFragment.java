@@ -151,42 +151,14 @@ public class ArticleFragment extends Fragment {
 		for(int i = 0; i < 8; i++) {
 			tmp_Map = new HashMap<String, Object>();
 			tmp_Map.put("m_article_title", "题目" + i);
-			tmp_Map.put("m_article_content", "文章简要内容测试");
+			tmp_Map.put("m_article_content", "文章简要内容测试, 文章简要内容测试.");
 			tmp_Map.put("m_article_authorLogdate", "Jack  2015-10-01");
 			articles.add(tmp_Map);
 		}
-		SimpleAdapter mAdapter = new SimpleAdapter(getActivity(), articles, R.layout.article_item, mfrom, mto);
-//		mListView.setAdapter(mAdapter);
+		SimpleAdapter mAdapter = new SimpleAdapter(getActivity(), articles, 
+				R.layout.article_item, mfrom, mto);
+		mListView.setAdapter(mAdapter);
+
+	}
 		
-		ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity(),
-				android.R.layout.simple_list_item_1, getData());
-		mListView.setAdapter(arrayAdapter);
-	}
-	
-	private List<String> getData(){
-		List<String> data = new ArrayList<String>();
-		for(int i = 0;i <20;i++) {
-			data.add(i+"");
-		}
-		return data;
-	}
-	
-	// 文章的具体信息
-	private class InfoItem {
-		public String articleTitle = null;			// 文章题目
-		public String articleContentString = null;	// 文章简要内容
-		public String author = null;				// 作者
-		public String logdate = null;				// 发布日期
-		public int like;							// 赞数
-		public int collection;						// 收藏数
-		
-		public InfoItem(String at, String ac, String auth, String ld, int lik, int col) {
-			articleTitle = at;
-			articleContentString = ac;
-			author = auth;
-			logdate = ld;
-			like = lik;
-			collection = col;
-		}
-	}
 }
