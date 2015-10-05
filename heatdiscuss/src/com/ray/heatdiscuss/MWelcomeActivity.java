@@ -4,14 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
@@ -19,11 +22,16 @@ import android.widget.ListAdapter;
 
 public class MWelcomeActivity extends Activity implements OnClickListener {
 	
+	private static final String	TAG	= "MWelcomeActivity";
+	
 	private Button btn_start = null;
 	private ViewPager m_viewPager = null;
 	private int[] m_imageIds = {R.drawable.guide_image1, R.drawable.guide_image2, R.drawable.guide_image3};
 	private List<ImageView> m_images = new ArrayList<ImageView>();
 	
+	private ImageView mCircle1 = null;
+	private ImageView mCircle2 = null;
+	private ImageView mCircle3 = null;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +47,10 @@ public class MWelcomeActivity extends Activity implements OnClickListener {
 	private void initView() {
 		btn_start = (Button)findViewById(R.id.btn_start);
 		btn_start.setOnClickListener(this);
+		
+		mCircle1 = (ImageView)findViewById(R.id.circle1);
+		mCircle2 = (ImageView)findViewById(R.id.circle2);
+		mCircle3 = (ImageView)findViewById(R.id.circle3);
 		
 		m_viewPager = (ViewPager)findViewById(R.id.m_viewpager);
 		m_viewPager.setAdapter(new PagerAdapter() {
@@ -74,6 +86,40 @@ public class MWelcomeActivity extends Activity implements OnClickListener {
 			}
 		});
 		
+		m_viewPager.setOnPageChangeListener(new OnPageChangeListener() {
+			
+			@Override
+			public void onPageSelected(int arg0) {
+				// TODO Auto-generated method stub
+				resetCircles();
+				int currentItem = m_viewPager.getCurrentItem();
+				switch (currentItem) {
+				case 0:
+					mCircle1.setImageResource(R.drawable.circle_black);
+					break;
+				case 1:
+					mCircle2.setImageResource(R.drawable.circle_black);
+					break;
+				case 2:
+					mCircle3.setImageResource(R.drawable.circle_black);
+					break;
+				default:
+					break;
+				}
+			}
+			
+			@Override
+			public void onPageScrolled(int arg0, float arg1, int arg2) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void onPageScrollStateChanged(int arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		
 	}
 
@@ -92,4 +138,11 @@ public class MWelcomeActivity extends Activity implements OnClickListener {
 		startActivity(mIntent);
 	}
 
+	// 把圈圈都置为白色
+	private void resetCircles() {
+		mCircle1.setImageResource(R.drawable.circle_white);
+		mCircle2.setImageResource(R.drawable.circle_white);
+		mCircle3.setImageResource(R.drawable.circle_white);
+	}
+	
 }

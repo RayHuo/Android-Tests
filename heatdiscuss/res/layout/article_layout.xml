@@ -4,12 +4,64 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
     
-	<TextView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:gravity="center"
-        android:text="文章tab内容..."
-        android:textSize="30sp"
-        android:textStyle="bold" />
+    <RelativeLayout
+        android:id="@+id/layout_newArticlesViewpager"
+        android:layout_width="match_parent"
+        android:layout_height="110dp" >
+        "
+		<android.support.v4.view.ViewPager
+	        android:id="@+id/newArticlesViewpager"
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	         >
+	    </android.support.v4.view.ViewPager>
+	    
+		<ImageView
+	        android:id="@+id/mAcircle1"
+	        android:layout_width="10dp"
+	        android:layout_height="10dp"
+	        android:scaleType="fitCenter"
+	        android:layout_alignParentBottom="true"
+        	android:layout_alignParentRight="true"
+	        android:layout_marginTop="90dp"
+        	android:layout_marginRight="10dp"
+	        android:src="@drawable/circle_white" />
+	
+		<ImageView
+	        android:id="@+id/mAcircle2"
+	        android:layout_width="10dp"
+	        android:layout_height="10dp"
+	        android:scaleType="fitCenter"
+	        android:layout_alignBottom="@+id/mAcircle1"
+	        android:layout_toLeftOf="@+id/mAcircle1"
+	        android:layout_marginRight="10px"
+	        android:src="@drawable/circle_white" />
+		
+		<ImageView
+	        android:id="@+id/mAcircle3"
+	        android:layout_width="10dp"
+	        android:layout_height="10dp"
+	        android:scaleType="fitCenter"
+	        android:layout_alignBottom="@+id/mAcircle2"
+	        android:layout_toLeftOf="@+id/mAcircle2"
+	        android:layout_marginRight="10px"
+	        android:src="@drawable/circle_black" />
+
+    </RelativeLayout>
     
+    <ImageView
+	        android:id="@+id/test_image"
+	        android:layout_width="match_parent"
+	        android:layout_height="60dp"
+	        android:scaleType="fitCenter"
+	        />
+    
+	<ListView
+	    android:id="@+id/newArticlesList"
+	    android:layout_width="fill_parent"
+	    android:layout_height="0dp"
+	    android:layout_weight="1.0"
+	    >
+	</ListView>
+	
 </LinearLayout>

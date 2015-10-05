@@ -30,13 +30,13 @@ public class MainTabActivity extends FragmentActivity implements OnClickListener
 	private List<Fragment> mFragments = new ArrayList<Fragment>();
 	
 	private LinearLayout mArticleLayout = null;			// "文章"tab按钮
-	private LinearLayout mFriendsArticleLayout = null;	// "友笔"tab按钮
+	private LinearLayout mconversationLayout = null;	// "友笔"tab按钮
 	private LinearLayout mFriendsLayout = null;			// "知己"tab按钮
 	private LinearLayout mMineLayout = null;			// "吾"tab按钮
 	
 	// 对应的bottom部分按钮
 	private ImageButton mArticleBtn = null;
-	private ImageButton mFriendsArticleBtn = null;
+	private ImageButton mconversationBtn = null;
 	private ImageButton mFriendsBtn = null;
 	private ImageButton mMineBtn = null;
 	
@@ -58,36 +58,36 @@ public class MainTabActivity extends FragmentActivity implements OnClickListener
 		mTopItem.setText(R.string.tab_text_article);		// 默认显示文章tab
 		
 		mArticleBtn = (ImageButton)findViewById(R.id.id_btn_article);
-		mFriendsArticleBtn = (ImageButton)findViewById(R.id.id_btn_friendsarticle);
+		mconversationBtn = (ImageButton)findViewById(R.id.id_btn_conversation);
 		mFriendsBtn = (ImageButton)findViewById(R.id.id_btn_friends);
 		mMineBtn = (ImageButton)findViewById(R.id.id_btn_mine);
 		
 		mArticleLayout = (LinearLayout)findViewById(R.id.id_tab_article);
-		mFriendsArticleLayout = (LinearLayout)findViewById(R.id.id_tab_friendsarticle);
+		mconversationLayout = (LinearLayout)findViewById(R.id.id_tab_conversation);
 		mFriendsLayout = (LinearLayout)findViewById(R.id.id_tab_friends);
 		mMineLayout = (LinearLayout)findViewById(R.id.id_tab_mine);
 		
 		mArticleLayout.setOnClickListener(this);
-		mFriendsArticleLayout.setOnClickListener(this);
+		mconversationLayout.setOnClickListener(this);
 		mFriendsLayout.setOnClickListener(this);
 		mMineLayout.setOnClickListener(this);
 		
 //		LayoutInflater mInflater = LayoutInflater.from(this);
 //		View tab_article = mInflater.inflate(R.layout.article_layout, null);
-//		View tab_friendsarticle = mInflater.inflate(R.layout.friendsarticle_layout, null);
+//		View tab_conversation = mInflater.inflate(R.layout.conversation_layout, null);
 //		View tab_friends = mInflater.inflate(R.layout.friends_layout, null);
 //		View tab_mine = mInflater.inflate(R.layout.mine_layout, null);
 //		mViewList.add(tab_article);
-//		mViewList.add(tab_friendsarticle);
+//		mViewList.add(tab_conversation);
 //		mViewList.add(tab_friends);
 //		mViewList.add(tab_mine);
 		
 		Fragment frag_article = new ArticleFragment();
-		Fragment frag_friendsarticle = new FriendsArticleFragment();
+		Fragment frag_conversation = new ConversationFragment();
 		Fragment frag_friends = new FriendsFragment();
 		Fragment frag_mine = new MineFragment();
 		mFragments.add(frag_article);
-		mFragments.add(frag_friendsarticle);
+		mFragments.add(frag_conversation);
 		mFragments.add(frag_friends);
 		mFragments.add(frag_mine);
 		
@@ -122,8 +122,8 @@ public class MainTabActivity extends FragmentActivity implements OnClickListener
 					mTopItem.setText(R.string.tab_text_article);
 					break;
 				case 1:
-					mFriendsArticleBtn.setImageResource(R.drawable.tab_find_frd_pressed);
-					mTopItem.setText(R.string.tab_text_friendsarticle);				
+					mconversationBtn.setImageResource(R.drawable.tab_find_frd_pressed);
+					mTopItem.setText(R.string.tab_text_conversation);				
 					break;
 				case 2:
 					mFriendsBtn.setImageResource(R.drawable.tab_address_pressed);
@@ -164,10 +164,10 @@ public class MainTabActivity extends FragmentActivity implements OnClickListener
 				mArticleBtn.setImageResource(R.drawable.tab_weixin_pressed);
 				mTopItem.setText(R.string.tab_text_article);
 				break;
-			case R.id.id_tab_friendsarticle:
+			case R.id.id_tab_conversation:
 				mViewPager.setCurrentItem(1);
-				mFriendsArticleBtn.setImageResource(R.drawable.tab_find_frd_pressed);
-				mTopItem.setText(R.string.tab_text_friendsarticle);	
+				mconversationBtn.setImageResource(R.drawable.tab_find_frd_pressed);
+				mTopItem.setText(R.string.tab_text_conversation);	
 				break;
 			case R.id.id_tab_friends:
 				mViewPager.setCurrentItem(2);
@@ -187,7 +187,7 @@ public class MainTabActivity extends FragmentActivity implements OnClickListener
 	// 把bottom中的所有tab的图标设为normal状态，即灰掉。
 	private void allNormal() {
 		mArticleBtn.setImageResource(R.drawable.tab_weixin_normal);
-		mFriendsArticleBtn.setImageResource(R.drawable.tab_find_frd_normal);
+		mconversationBtn.setImageResource(R.drawable.tab_find_frd_normal);
 		mFriendsBtn.setImageResource(R.drawable.tab_address_normal);
 		mMineBtn.setImageResource(R.drawable.tab_settings_normal);
 	}
