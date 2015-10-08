@@ -15,12 +15,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
 import android.widget.ImageView.ScaleType;
+import android.widget.Toast;
 
 public class ArticleFragment extends Fragment {
 	
@@ -39,7 +42,7 @@ public class ArticleFragment extends Fragment {
 	private List<ImageView> new_articles = new ArrayList<ImageView>();
 	private int[] article_images = {R.drawable.article01, R.drawable.article02, R.drawable.article03};
 	
-	private ImageView testImage = null;
+	private SimpleAdapter mAdapter = null;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -58,9 +61,6 @@ public class ArticleFragment extends Fragment {
 		mACircle1 = (ImageView)rootView.findViewById(R.id.mAcircle1);
 		mACircle2 = (ImageView)rootView.findViewById(R.id.mAcircle2);
 		mACircle3 = (ImageView)rootView.findViewById(R.id.mAcircle3);
-	
-		testImage = (ImageView)rootView.findViewById(R.id.test_image);
-		testImage.setImageResource(R.drawable.article02);
 	}
 	
 	private void initListener() {
@@ -155,10 +155,25 @@ public class ArticleFragment extends Fragment {
 			tmp_Map.put("m_article_authorLogdate", "Jack  2015-10-01");
 			articles.add(tmp_Map);
 		}
-		SimpleAdapter mAdapter = new SimpleAdapter(getActivity(), articles, 
+		mAdapter = new SimpleAdapter(getActivity(), articles, 
 				R.layout.article_item, mfrom, mto);
 		mListView.setAdapter(mAdapter);
 
+		mListView.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position,
+					long id) {
+				// TODO Auto-generated method stub
+				Map<String, String> _map = (Map<String, String>)mAdapter.getItem(position);
+				String m_article_title = _map.get("m_article_title");
+				String m_article_content = _map.get("m_article_content");
+				String m_article_authorLogdate = _map.get("m_article_authorLogdate");
+				Toast.makeText(getActivity(), m_article_title + ", " + m_article_content + ", " + m_article_authorLogdate, Toast.LENGTH_LONG).show();
+			}
+			
+		
+		});
 	}
 		
 }

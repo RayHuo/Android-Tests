@@ -49,7 +49,7 @@ public final class R {
         public static final int welcome_arrow=0x7f020019;
     }
     public static final class id {
-        public static final int action_settings=0x7f08001f;
+        public static final int action_settings=0x7f08001e;
         public static final int article_detail=0x7f080006;
         public static final int article_image=0x7f080005;
         public static final int btn_start=0x7f080001;
@@ -57,18 +57,18 @@ public final class R {
         public static final int circle2=0x7f080003;
         public static final int circle3=0x7f080004;
         public static final int goto_article_arrow=0x7f08000a;
-        public static final int id_btn_article=0x7f080013;
-        public static final int id_btn_conversation=0x7f080016;
-        public static final int id_btn_friends=0x7f080019;
-        public static final int id_btn_mine=0x7f08001c;
-        public static final int id_tab_article=0x7f080012;
-        public static final int id_tab_conversation=0x7f080015;
-        public static final int id_tab_friends=0x7f080018;
-        public static final int id_tab_mine=0x7f08001b;
-        public static final int id_txt_article=0x7f080014;
-        public static final int id_txt_conversation=0x7f080017;
-        public static final int id_txt_friend=0x7f08001a;
-        public static final int id_txt_mine=0x7f08001d;
+        public static final int id_btn_article=0x7f080012;
+        public static final int id_btn_conversation=0x7f080015;
+        public static final int id_btn_friends=0x7f080018;
+        public static final int id_btn_mine=0x7f08001b;
+        public static final int id_tab_article=0x7f080011;
+        public static final int id_tab_conversation=0x7f080014;
+        public static final int id_tab_friends=0x7f080017;
+        public static final int id_tab_mine=0x7f08001a;
+        public static final int id_txt_article=0x7f080013;
+        public static final int id_txt_conversation=0x7f080016;
+        public static final int id_txt_friend=0x7f080019;
+        public static final int id_txt_mine=0x7f08001c;
         public static final int layout_newArticlesViewpager=0x7f08000b;
         public static final int mAcircle1=0x7f08000d;
         public static final int mAcircle2=0x7f08000e;
@@ -77,10 +77,9 @@ public final class R {
         public static final int m_article_content=0x7f080008;
         public static final int m_article_title=0x7f080007;
         public static final int m_viewpager=0x7f080000;
-        public static final int newArticlesList=0x7f080011;
+        public static final int newArticlesList=0x7f080010;
         public static final int newArticlesViewpager=0x7f08000c;
-        public static final int test_image=0x7f080010;
-        public static final int topItem=0x7f08001e;
+        public static final int topItem=0x7f08001d;
     }
     public static final class layout {
         public static final int activity_main_tab=0x7f030000;
