@@ -7,34 +7,33 @@
     <RelativeLayout
         android:id="@+id/layout_newArticlesViewpager"
         android:layout_width="match_parent"
-        android:layout_height="110dp" >
+        android:layout_height="170dp" >
         
 		<android.support.v4.view.ViewPager
 	        android:id="@+id/newArticlesViewpager"
 	        android:layout_width="match_parent"
-	        android:layout_height="110dp"
+	        android:layout_height="match_parent"
 	         >
 	    </android.support.v4.view.ViewPager>
 	    
 		<ImageView
-	        android:id="@+id/mAcircle1"
-	        android:layout_width="10dp"
-	        android:layout_height="10dp"
-	        android:scaleType="fitCenter"
-	        android:layout_alignParentBottom="true"
-        	android:layout_alignParentRight="true"
-	        android:layout_marginTop="90dp"
-        	android:layout_marginRight="10dp"
-	        android:src="@drawable/circle_white" />
+		    android:id="@+id/mAcircle1"
+		    android:layout_width="10dp"
+		    android:layout_height="10dp"
+		    android:scaleType="fitCenter"
+		    android:layout_alignBottom="@+id/mAcircle2"
+		    android:layout_toLeftOf="@+id/mAcircle2"
+		    android:layout_marginRight="6dp"
+		    android:src="@drawable/circle_black" />
 	
 		<ImageView
 	        android:id="@+id/mAcircle2"
 	        android:layout_width="10dp"
 	        android:layout_height="10dp"
 	        android:scaleType="fitCenter"
-	        android:layout_alignBottom="@+id/mAcircle1"
-	        android:layout_toLeftOf="@+id/mAcircle1"
-	        android:layout_marginRight="10px"
+	        android:layout_alignBottom="@+id/mAcircle3"
+	        android:layout_toLeftOf="@+id/mAcircle3"
+	        android:layout_marginRight="6dp"
 	        android:src="@drawable/circle_white" />
 		
 		<ImageView
@@ -42,10 +41,11 @@
 	        android:layout_width="10dp"
 	        android:layout_height="10dp"
 	        android:scaleType="fitCenter"
-	        android:layout_alignBottom="@+id/mAcircle2"
-	        android:layout_toLeftOf="@+id/mAcircle2"
+	        android:layout_alignParentBottom="true"
+        	android:layout_alignParentRight="true"
+        	android:layout_marginTop="90dp"
 	        android:layout_marginRight="10px"
-	        android:src="@drawable/circle_black" />
+	        android:src="@drawable/circle_white" />
 
     </RelativeLayout>
     

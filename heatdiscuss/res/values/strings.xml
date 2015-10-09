@@ -8,4 +8,8 @@
 	<string name="tab_text_conversation">交流列表</string>
 	<string name="tab_text_friends">知己列表</string>
 	<string name="tab_text_mine">个人信息</string>
+	
+	<string name="mine_nickname_string">昵称：</string>
+	<string name="mine_sign_string">签名：</string>
+	<string name="mine_tag_string">标签：</string>
 </resources>

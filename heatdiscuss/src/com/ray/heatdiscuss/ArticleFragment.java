@@ -61,6 +61,7 @@ public class ArticleFragment extends Fragment {
 		mACircle1 = (ImageView)rootView.findViewById(R.id.mAcircle1);
 		mACircle2 = (ImageView)rootView.findViewById(R.id.mAcircle2);
 		mACircle3 = (ImageView)rootView.findViewById(R.id.mAcircle3);
+
 	}
 	
 	private void initListener() {
@@ -71,7 +72,7 @@ public class ArticleFragment extends Fragment {
 			public Object instantiateItem(ViewGroup container, int position) {
 				ImageView m_ImageView = new ImageView(tContext);
 				m_ImageView.setImageResource(article_images[position]);
-				m_ImageView.setScaleType(ScaleType.FIT_CENTER);		// 按照指定大小缩放显示
+				m_ImageView.setScaleType(ScaleType.CENTER_CROP);		// 铺满
 				container.addView(m_ImageView);
 				new_articles.add(m_ImageView);
 				
@@ -92,7 +93,7 @@ public class ArticleFragment extends Fragment {
 			@Override
 			public int getCount() {
 				// TODO Auto-generated method stub
-				return new_articles.size();
+				return article_images.length;
 			}
 		});
 		
@@ -151,29 +152,27 @@ public class ArticleFragment extends Fragment {
 		for(int i = 0; i < 8; i++) {
 			tmp_Map = new HashMap<String, Object>();
 			tmp_Map.put("m_article_title", "题目" + i);
-			tmp_Map.put("m_article_content", "文章简要内容测试, 文章简要内容测试.");
+			tmp_Map.put("m_article_content", "文章简要内容测试");
 			tmp_Map.put("m_article_authorLogdate", "Jack  2015-10-01");
 			articles.add(tmp_Map);
 		}
-		mAdapter = new SimpleAdapter(getActivity(), articles, 
-				R.layout.article_item, mfrom, mto);
+		mAdapter = new SimpleAdapter(getActivity(), articles, R.layout.article_item, mfrom, mto);
 		mListView.setAdapter(mAdapter);
-
+		
 		mListView.setOnItemClickListener(new OnItemClickListener() {
 
+			@SuppressWarnings("unchecked")
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position,
 					long id) {
 				// TODO Auto-generated method stub
-				Map<String, String> _map = (Map<String, String>)mAdapter.getItem(position);
-				String m_article_title = _map.get("m_article_title");
-				String m_article_content = _map.get("m_article_content");
-				String m_article_authorLogdate = _map.get("m_article_authorLogdate");
+				Map<String, Object> _map = (Map<String, Object>) mAdapter.getItem(position);
+				String m_article_title = (String) _map.get("m_article_title");
+				String m_article_content = (String) _map.get("m_article_content");
+				String m_article_authorLogdate = (String) _map.get("m_article_authorLogdate");
 				Toast.makeText(getActivity(), m_article_title + ", " + m_article_content + ", " + m_article_authorLogdate, Toast.LENGTH_LONG).show();
 			}
-			
-		
 		});
 	}
-		
+	
 }

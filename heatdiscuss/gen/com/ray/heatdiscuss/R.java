@@ -23,11 +23,11 @@ public final class R {
     public static final class drawable {
         public static final int arrow_right_black=0x7f020000;
         public static final int article01=0x7f020001;
-        public static final int article02=0x7f020002;
-        public static final int article03=0x7f020003;
-        public static final int bottom_bar=0x7f020004;
-        public static final int btn_welcome_normal=0x7f020005;
-        public static final int btn_welcome_pressed=0x7f020006;
+        public static final int article01_=0x7f020002;
+        public static final int article02=0x7f020003;
+        public static final int article02_=0x7f020004;
+        public static final int article03=0x7f020005;
+        public static final int bottom_bar=0x7f020006;
         public static final int btn_welcome_selector=0x7f020007;
         public static final int circle_black=0x7f020008;
         public static final int circle_white=0x7f020009;
@@ -35,21 +35,28 @@ public final class R {
         public static final int guide_image2=0x7f02000b;
         public static final int guide_image3=0x7f02000c;
         public static final int ic_launcher=0x7f02000d;
-        public static final int satellite_black=0x7f02000e;
-        public static final int tab_address_normal=0x7f02000f;
-        public static final int tab_address_pressed=0x7f020010;
-        public static final int tab_bg2=0x7f020011;
-        public static final int tab_find_frd_normal=0x7f020012;
-        public static final int tab_find_frd_pressed=0x7f020013;
-        public static final int tab_settings_normal=0x7f020014;
-        public static final int tab_settings_pressed=0x7f020015;
-        public static final int tab_weixin_normal=0x7f020016;
-        public static final int tab_weixin_pressed=0x7f020017;
-        public static final int title_bar=0x7f020018;
-        public static final int welcome_arrow=0x7f020019;
+        public static final int mine_articles=0x7f02000e;
+        public static final int mine_collection=0x7f02000f;
+        public static final int mine_concern=0x7f020010;
+        public static final int mine_default_icon=0x7f020011;
+        public static final int mine_info_background=0x7f020012;
+        public static final int mine_message=0x7f020013;
+        public static final int mine_zan=0x7f020014;
+        public static final int satellite_black=0x7f020015;
+        public static final int tab_address_normal=0x7f020016;
+        public static final int tab_address_pressed=0x7f020017;
+        public static final int tab_bg2=0x7f020018;
+        public static final int tab_find_frd_normal=0x7f020019;
+        public static final int tab_find_frd_pressed=0x7f02001a;
+        public static final int tab_settings_normal=0x7f02001b;
+        public static final int tab_settings_pressed=0x7f02001c;
+        public static final int tab_weixin_normal=0x7f02001d;
+        public static final int tab_weixin_pressed=0x7f02001e;
+        public static final int title_bar=0x7f02001f;
+        public static final int welcome_arrow=0x7f020020;
     }
     public static final class id {
-        public static final int action_settings=0x7f08001e;
+        public static final int action_settings=0x7f08002e;
         public static final int article_detail=0x7f080006;
         public static final int article_image=0x7f080005;
         public static final int btn_start=0x7f080001;
@@ -76,10 +83,26 @@ public final class R {
         public static final int m_article_authorLogdate=0x7f080009;
         public static final int m_article_content=0x7f080008;
         public static final int m_article_title=0x7f080007;
+        public static final int m_nickname=0x7f080020;
+        public static final int m_sign=0x7f080023;
+        public static final int m_tag=0x7f080026;
+        public static final int m_tag_arrow=0x7f08002c;
+        public static final int m_tag_image=0x7f08002a;
+        public static final int m_tag_name=0x7f08002b;
         public static final int m_viewpager=0x7f080000;
+        public static final int mine_detail=0x7f08001f;
+        public static final int mine_icon=0x7f08001e;
+        public static final int mine_info_list=0x7f080029;
+        public static final int mine_infos=0x7f08001d;
+        public static final int mine_nickname=0x7f080022;
+        public static final int mine_nickname_t=0x7f080021;
+        public static final int mine_sign=0x7f080025;
+        public static final int mine_sign_t=0x7f080024;
+        public static final int mine_tag=0x7f080028;
+        public static final int mine_tag_t=0x7f080027;
         public static final int newArticlesList=0x7f080010;
         public static final int newArticlesViewpager=0x7f08000c;
-        public static final int topItem=0x7f08001d;
+        public static final int topItem=0x7f08002d;
     }
     public static final class layout {
         public static final int activity_main_tab=0x7f030000;
@@ -90,7 +113,8 @@ public final class R {
         public static final int conversation_layout=0x7f030005;
         public static final int friends_layout=0x7f030006;
         public static final int mine_layout=0x7f030007;
-        public static final int top=0x7f030008;
+        public static final int mine_tag_item=0x7f030008;
+        public static final int top=0x7f030009;
     }
     public static final class menu {
         public static final int mwelcome=0x7f070000;
@@ -98,6 +122,9 @@ public final class R {
     public static final class string {
         public static final int action_settings=0x7f050001;
         public static final int app_name=0x7f050000;
+        public static final int mine_nickname_string=0x7f050006;
+        public static final int mine_sign_string=0x7f050007;
+        public static final int mine_tag_string=0x7f050008;
         public static final int tab_text_article=0x7f050002;
         public static final int tab_text_conversation=0x7f050003;
         public static final int tab_text_friends=0x7f050004;
