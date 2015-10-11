@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/mine_infos"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:orientation="horizontal" 
+        android:background="@drawable/mine_info_background">
+
+        <ImageView
+            android:id="@+id/mine_icon"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:src="@drawable/mine_default_icon" />
+
+        <LinearLayout
+            android:id="@+id/mine_detail"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center" 
+            android:layout_marginLeft="10dp"
+            >
+			
+            <LinearLayout
+                android:id="@+id/m_nickname"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+	            <TextView
+	                android:id="@+id/mine_nickname_t"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_gravity="center_vertical"
+	                android:textSize="20sp"
+	                android:text="@string/mine_nickname_string"
+	                android:background="#D3D3D3"
+	                 />
+	            
+	            <TextView
+	                android:id="@+id/mine_nickname"
+	                android:layout_width="match_parent"
+	                android:layout_height="wrap_content"
+	                android:layout_gravity="center_vertical"
+	                android:textSize="20sp"
+	                android:layout_marginLeft="5dp"
+	                 />
+            </LinearLayout>
+            
+            <LinearLayout
+                android:id="@+id/m_sign"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                >
+	            
+                <TextView
+	                android:id="@+id/mine_sign_t"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_gravity="center_vertical"
+	                android:textSize="20sp"
+	                android:text="@string/mine_sign_string"
+	                android:background="#D3D3D3"
+	                 />
+                
+	            <TextView
+	                android:id="@+id/mine_sign"
+	                android:layout_width="match_parent"
+	                android:layout_height="wrap_content"
+	                android:layout_gravity="center_vertical"
+	                android:textSize="20sp"
+	                android:layout_marginLeft="5dp"
+	                 />
+            </LinearLayout>
+            
+            <LinearLayout
+                android:id="@+id/m_tag"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                >
+	            
+                <TextView
+	                android:id="@+id/mine_tag_t"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_gravity="center_vertical"
+	                android:textSize="20sp"
+	                android:text="@string/mine_tag_string"
+	                android:background="#D3D3D3"
+	                 />
+                
+	            <TextView
+	                android:id="@+id/mine_tag"
+	                android:layout_width="match_parent"
+	                android:layout_height="wrap_content"
+	                android:layout_gravity="center_vertical"
+	                android:textSize="20sp"
+	                android:layout_marginLeft="5dp"
+	                 />
+			</LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/mine_info_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </ListView>
+
+</LinearLayout>
