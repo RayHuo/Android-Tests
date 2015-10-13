@@ -58,7 +58,7 @@ public final class R {
         public static final int welcome_arrow=0x7f020022;
     }
     public static final class id {
-        public static final int action_settings=0x7f080035;
+        public static final int action_settings=0x7f080042;
         public static final int article_collection_img=0x7f08000d;
         public static final int article_collection_num=0x7f08000e;
         public static final int article_detail=0x7f080006;
@@ -70,20 +70,26 @@ public final class R {
         public static final int circle1=0x7f080002;
         public static final int circle2=0x7f080003;
         public static final int circle3=0x7f080004;
-        public static final int friends_articles=0x7f080023;
-        public static final int id_btn_article=0x7f080018;
-        public static final int id_btn_conversation=0x7f08001b;
-        public static final int id_btn_friends=0x7f08001e;
-        public static final int id_btn_mine=0x7f080021;
-        public static final int id_tab_article=0x7f080017;
-        public static final int id_tab_conversation=0x7f08001a;
-        public static final int id_tab_friends=0x7f08001d;
-        public static final int id_tab_mine=0x7f080020;
-        public static final int id_txt_article=0x7f080019;
-        public static final int id_txt_conversation=0x7f08001c;
-        public static final int id_txt_friend=0x7f08001f;
-        public static final int id_txt_mine=0x7f080022;
+        public static final int contact_tab=0x7f08001a;
+        public static final int conversation_tab=0x7f08001b;
+        public static final int friends_articles=0x7f08002e;
+        public static final int friends_contact_layout=0x7f080030;
+        public static final int friends_conversation_layout=0x7f08002f;
+        public static final int id_btn_article=0x7f08001d;
+        public static final int id_btn_friends=0x7f080023;
+        public static final int id_btn_friends_articles=0x7f080020;
+        public static final int id_btn_mine=0x7f080026;
+        public static final int id_tab_article=0x7f08001c;
+        public static final int id_tab_friendarticle=0x7f08001f;
+        public static final int id_tab_friends=0x7f080022;
+        public static final int id_tab_mine=0x7f080025;
+        public static final int id_txt_article=0x7f08001e;
+        public static final int id_txt_friend=0x7f080024;
+        public static final int id_txt_friends_articles=0x7f080021;
+        public static final int id_txt_mine=0x7f080027;
         public static final int layout_newArticlesViewpager=0x7f080011;
+        public static final int listView1=0x7f08002d;
+        public static final int listView2=0x7f08002a;
         public static final int mAcircle1=0x7f080013;
         public static final int mAcircle2=0x7f080014;
         public static final int mAcircle3=0x7f080015;
@@ -91,26 +97,33 @@ public final class R {
         public static final int m_article_content=0x7f080008;
         public static final int m_article_logdate=0x7f08000b;
         public static final int m_article_title=0x7f080007;
-        public static final int m_nickname=0x7f080027;
-        public static final int m_sign=0x7f08002a;
-        public static final int m_tag=0x7f08002d;
-        public static final int m_tag_arrow=0x7f080033;
-        public static final int m_tag_image=0x7f080031;
-        public static final int m_tag_name=0x7f080032;
+        public static final int m_friends_title=0x7f080019;
+        public static final int m_nickname=0x7f080034;
+        public static final int m_sign=0x7f080037;
+        public static final int m_tag=0x7f08003a;
+        public static final int m_tag_arrow=0x7f080040;
+        public static final int m_tag_image=0x7f08003e;
+        public static final int m_tag_name=0x7f08003f;
+        public static final int m_title=0x7f080017;
+        public static final int m_title_text=0x7f080018;
         public static final int m_viewpager=0x7f080000;
-        public static final int mine_detail=0x7f080026;
-        public static final int mine_icon=0x7f080025;
-        public static final int mine_info_list=0x7f080030;
-        public static final int mine_infos=0x7f080024;
-        public static final int mine_nickname=0x7f080029;
-        public static final int mine_nickname_t=0x7f080028;
-        public static final int mine_sign=0x7f08002c;
-        public static final int mine_sign_t=0x7f08002b;
-        public static final int mine_tag=0x7f08002f;
-        public static final int mine_tag_t=0x7f08002e;
+        public static final int mine_detail=0x7f080033;
+        public static final int mine_icon=0x7f080032;
+        public static final int mine_info_list=0x7f08003d;
+        public static final int mine_infos=0x7f080031;
+        public static final int mine_nickname=0x7f080036;
+        public static final int mine_nickname_t=0x7f080035;
+        public static final int mine_sign=0x7f080039;
+        public static final int mine_sign_t=0x7f080038;
+        public static final int mine_tag=0x7f08003c;
+        public static final int mine_tag_t=0x7f08003b;
         public static final int newArticlesList=0x7f080016;
         public static final int newArticlesViewpager=0x7f080012;
-        public static final int topItem=0x7f080034;
+        public static final int searchView1=0x7f08002b;
+        public static final int searchView2=0x7f080028;
+        public static final int textView1=0x7f08002c;
+        public static final int textView2=0x7f080029;
+        public static final int topItem=0x7f080041;
         public static final int zhanwei=0x7f08000c;
     }
     public static final class layout {
@@ -118,12 +131,15 @@ public final class R {
         public static final int activity_mwelcome=0x7f030001;
         public static final int article_item=0x7f030002;
         public static final int article_layout=0x7f030003;
-        public static final int bottom=0x7f030004;
-        public static final int contact_layout=0x7f030005;
-        public static final int friends_layout=0x7f030006;
-        public static final int mine_layout=0x7f030007;
-        public static final int mine_tag_item=0x7f030008;
-        public static final int top=0x7f030009;
+        public static final int base_title_layout=0x7f030004;
+        public static final int bottom=0x7f030005;
+        public static final int contact_layout=0x7f030006;
+        public static final int conversation_layout=0x7f030007;
+        public static final int friends_article_layout=0x7f030008;
+        public static final int friends_layout=0x7f030009;
+        public static final int mine_layout=0x7f03000a;
+        public static final int mine_tag_item=0x7f03000b;
+        public static final int top=0x7f03000c;
     }
     public static final class menu {
         public static final int mwelcome=0x7f070000;
@@ -135,8 +151,8 @@ public final class R {
         public static final int mine_sign_string=0x7f050007;
         public static final int mine_tag_string=0x7f050008;
         public static final int tab_text_article=0x7f050002;
-        public static final int tab_text_conversation=0x7f050003;
         public static final int tab_text_friends=0x7f050004;
+        public static final int tab_text_friends_articles=0x7f050003;
         public static final int tab_text_mine=0x7f050005;
     }
     public static final class style {
