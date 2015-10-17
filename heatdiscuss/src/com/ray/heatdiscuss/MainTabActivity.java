@@ -128,7 +128,7 @@ public class MainTabActivity extends FragmentActivity implements OnClickListener
 			@Override
 			public Fragment getItem(int arg0) {
 				// TODO Auto-generated method stub
-				Log.i(TAG, "MainTabActivity " + arg0);
+				Log.i(TAG, "MainTabActivity getItem" + arg0);
 				return mFragments.get(arg0);
 			}
 		};
@@ -210,7 +210,6 @@ public class MainTabActivity extends FragmentActivity implements OnClickListener
 			case R.id.id_tab_friends:
 				mViewPager.setCurrentItem(2);
 				mFriendsBtn.setImageResource(R.drawable.tab_address_pressed);
-//				mTopItem.setText(R.string.tab_text_friends);
 				mTitle.setVisibility(View.INVISIBLE);
 				mFriendTitle.setVisibility(View.VISIBLE);
 				break;

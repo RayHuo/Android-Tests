@@ -52,7 +52,8 @@ public class ArticleMainFragment extends Fragment{
 		mIndicator = (TabPageIndicator) rootView.findViewById(R.id.article_indicator);
 		mViewPager = (ViewPager) rootView.findViewById(R.id.article_viewpager);
 		
-		mAPageAdapter = new ArticlePageAdapter(getFragmentManager());
+		// 注意这里需要使用：getChildFragmentManager()，因为这是一个嵌在 Fragment 中的 Fragment
+		mAPageAdapter = new ArticlePageAdapter(getChildFragmentManager());
 		mViewPager.setAdapter(mAPageAdapter);
 		mViewPager.setOffscreenPageLimit(0);
 		
