@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import android.os.Bundle;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -14,11 +13,9 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
-import android.widget.ListAdapter;
 
 public class MWelcomeActivity extends Activity implements OnClickListener {
 	

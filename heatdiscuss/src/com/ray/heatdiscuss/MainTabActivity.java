@@ -3,6 +3,7 @@ package com.ray.heatdiscuss;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.ray.heatdiscuss.R;
 import android.R.anim;
 import android.R.integer;
 import android.app.Activity;
@@ -14,6 +15,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +26,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class MainTabActivity extends FragmentActivity implements OnClickListener{
+	
+	private static final String TAG = "MainTabActivity";
 	
 	private ViewPager mViewPager = null;
 	private FragmentPagerAdapter mFPagerAdapter = null;
@@ -103,7 +107,7 @@ public class MainTabActivity extends FragmentActivity implements OnClickListener
 //		mViewList.add(tab_friends);
 //		mViewList.add(tab_mine);
 		
-		Fragment frag_article = new ArticleFragment();
+		Fragment frag_article = new ArticleMainFragment();
 		Fragment frag_friendsArticle = new FriendsArticleFragment();
 		Fragment frag_friends = new FriendsFragment();
 		Fragment frag_mine = new MineFragment();
@@ -124,6 +128,7 @@ public class MainTabActivity extends FragmentActivity implements OnClickListener
 			@Override
 			public Fragment getItem(int arg0) {
 				// TODO Auto-generated method stub
+				Log.i(TAG, "MainTabActivity " + arg0);
 				return mFragments.get(arg0);
 			}
 		};
