@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:background="#ffffff"
+    >
+    
+	<ImageView 
+	    android:id="@+id/friends_article_image"
+	    android:layout_width="match_parent"
+	    android:layout_height="100dp"
+	    android:src="@drawable/friends_article_img1"
+	    android:scaleType="centerCrop"
+	    android:layout_marginBottom="5dp"
+	    />
+	
+	<LinearLayout
+	    android:id="@+id/friends_article_authorLogdate"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal"
+	    
+	    >
+	    
+	    <TextView
+            android:id="@+id/friends_article_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textColor="#C0C0C0"
+            android:text="Jack"
+            android:layout_marginLeft="5dp"
+            >
+        </TextView>
+	    
+	    <!-- 填充中间的弹性空间 -->
+	    <TextView 
+	        android:id="@+id/friends_article_insertion" 
+	        android:layout_width="0dp" 
+	        android:layout_weight="1"
+	        android:layout_height="match_parent"
+	        />
+	    
+	    <TextView 
+	        android:id="@+id/friends_article_logdate"
+	        android:layout_width="wrap_content"
+	        android:layout_height="match_parent"
+	        android:textColor="#C0C0C0"
+	        android:text="2015-10-18"
+	        android:layout_marginRight="5dp"
+	        />
+	    
+	  </LinearLayout>  
+	    
+	 <LinearLayout 
+	     android:id="@+id/friends_article_collectionZan"
+	     android:layout_width="match_parent"
+	     android:layout_height="wrap_content" 
+	     android:orientation="horizontal"
+	     android:layout_marginTop="5dp"
+	     android:layout_marginBottom="5dp"
+	     >
+	    <ImageView
+            android:id="@+id/friends_article_collection_img"
+            android:layout_width="wrap_content"
+            android:layout_height="15sp"
+            android:src="@drawable/article_collect_not"
+            android:layout_marginLeft="5dp"
+            >
+        </ImageView>
+           
+        <TextView
+           android:id="@+id/friends_article_collection_num"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:textSize="15sp"
+           android:textColor="#C0C0C0"
+           android:text="110"
+           android:layout_marginLeft="5dp" >
+        </TextView>
+           
+        <ImageView
+            android:id="@+id/friends_article_zan_img"
+            android:layout_width="wrap_content"
+            android:layout_height="15sp"
+            android:src="@drawable/article_zan"
+            android:layout_marginLeft="10dp"
+            >
+        </ImageView>
+        
+        <TextView
+            android:id="@+id/friends_article_zan_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+	        android:textColor="#C0C0C0"
+	        android:text="110"
+	        android:layout_marginLeft="5dp"
+         	>
+        </TextView>
+	</LinearLayout>
+    
+</LinearLayout>

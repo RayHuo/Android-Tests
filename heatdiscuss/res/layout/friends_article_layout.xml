@@ -2,12 +2,24 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical" 
+    android:background="#C0C0C0"
+    >
 
+    <!-- 
     <ListView
         android:id="@+id/friends_articles"
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
     </ListView>
+     -->
+
+    <GridView
+        android:id="@+id/friends_article_gridView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:horizontalSpacing="3dp"
+        android:numColumns="2" >
+    </GridView>
 
 </LinearLayout>
