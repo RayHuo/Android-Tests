@@ -1,27 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:layout_height="wrap_content"
     android:gravity="center"
     android:orientation="horizontal" >
     
-    <ImageView
-        android:id="@+id/article_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:src="@drawable/satellite_black"
-        android:layout_marginLeft="10dp"
+   <RelativeLayout
+        android:layout_width="120dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         >
-    </ImageView>
+        <ImageView
+	        android:id="@+id/article_image"
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        android:src="@drawable/article_default_img"
+	        android:scaleType="fitXY"
+        	/>
+        <RelativeLayout 
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:background="#80000000"
+            >
+            <TextView 
+                android:id="@+id/m_article_logdate"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center|left"
+                android:layout_marginLeft="3dp"
+                android:textColor="#ffffff"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:text="2015-10-22"
+                />
+        </RelativeLayout>
+        
+        <TextView 
+            android:id="@+id/m_article_type"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_alignParentRight="true"
+            android:background="#00BFFF"
+            android:textColor="#fdffff"
+            android:text="历史"
+            />
+    </RelativeLayout>
+    
     
     <LinearLayout 
         android:id="@+id/article_detail"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="match_parent"
-        android:layout_toRightOf="@+id/article_image"
-        android:layout_marginLeft="10dp" 
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginRight="3dp"
         android:gravity="center|left"
         android:orientation="vertical">
         
@@ -31,9 +69,12 @@
             android:layout_height="wrap_content"
             android:textSize="20sp" 
             android:layout_marginTop="0dp"
+            android:maxLines="1"
+            android:ellipsize="end"
             android:text="waht"
             >
         </TextView>
+        
         <TextView
             android:id="@+id/m_article_content"
             android:layout_width="match_parent"
@@ -55,81 +96,52 @@
             
             <TextView
 	            android:id="@+id/m_article_author"
-	            android:layout_width="wrap_content"
+	            android:layout_width="0dp"
 	            android:layout_height="wrap_content"
+	            android:layout_weight="1"
 	            android:textSize="15sp"
 	            android:textColor="#C0C0C0"
-	            android:text="jack"
+	            android:maxLines="1"
+                android:ellipsize="end"
+	            android:text="Jack Ryan Freazh"
 	            >
 	        </TextView>
-	        
-            <TextView
-                android:id="@+id/m_article_logdate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="15sp"
-	            android:textColor="#C0C0C0"
-	            android:layout_marginLeft="10dp"
-	            android:text="2015-10-08"
-                >
-            </TextView>
-            
-            <TextView
-                android:id="@+id/zhanwei"
+
+            <LinearLayout 
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
-			</TextView>
-            
-            <ImageView
-                android:id="@+id/article_collection_img"
-                android:layout_width="wrap_content"
-                android:layout_height="15sp"
-                android:src="@drawable/article_collect_not"
-                >
-            </ImageView>
-            
-            <TextView
-                android:id="@+id/article_collection_num"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15sp"
-	            android:textColor="#C0C0C0"
-	            android:text="110"
-	            android:layout_marginLeft="5dp">
-            </TextView>
-            
-            <ImageView
-                android:id="@+id/article_zan_img"
-                android:layout_width="wrap_content"
-                android:layout_height="15sp"
-                android:src="@drawable/article_zan"
-                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:gravity="right|center"
+                android:layout_marginRight="5dp"
                 >
-            </ImageView>
+                <ImageView
+	                android:id="@+id/m_article_view_img"
+	                android:layout_width="wrap_content"
+	                android:layout_height="15sp"
+	                android:src="@drawable/view_black"
+	                android:layout_marginLeft="10dp"
+	                >
+	            </ImageView>
+	            
+	            <TextView
+	                android:id="@+id/m_article_total_view_num"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_marginLeft="5dp"
+	                android:textSize="15sp"
+		            android:textColor="#c0c0c0"
+		            android:maxLines="1"
+                	android:ellipsize="end"
+		            android:text="141356"
+		            >
+	            </TextView>
+            </LinearLayout>
             
-            <TextView
-                android:id="@+id/article_zan_num"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="15sp"
-	            android:textColor="#C0C0C0"
-	            android:text="110"
-	            android:layout_marginLeft="5dp"
-	            android:layout_marginRight="10dp"
-	            >
-            </TextView>
         </LinearLayout>
         
         
     </LinearLayout>
 
-    <!-- <ImageView
-        android:id="@+id/goto_article_arrow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:src="@drawable/arrow_right_black" /> -->
 
 </LinearLayout>

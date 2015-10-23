@@ -5,11 +5,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.ray.heatdiscuss.articles.ArticleItemActivity;
+
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -143,35 +146,49 @@ public class ArticleFragment extends Fragment {
 	private void initArticles() {
 		articles = new ArrayList<Map<String, Object>>();
 		
-		String[] mfrom = {"m_article_title", "m_article_content", "m_article_author", "m_article_logdate"};		// 对于的字段名
-		int[] mto = {R.id.m_article_title, R.id.m_article_content, R.id.m_article_author, R.id.m_article_logdate};	// 对应 R.layout.article_item 中的id
+		String[] mfrom = {"m_article_logdate", "m_article_title", "m_article_content", 
+						  "m_article_author", "m_article_total_view_num"};		// 对于的字段名
+		int[] mto = {R.id.m_article_logdate, R.id.m_article_title, R.id.m_article_content, 
+				     R.id.m_article_author, R.id.m_article_total_view_num};	// 对应 R.layout.article_item 中的id
 		
 		Map<String, Object> tmp_Map = null;
 		for(int i = 0; i < 8; i++) {
 			tmp_Map = new HashMap<String, Object>();
+			tmp_Map.put("m_article_logdate", "2015-10-08");
 			tmp_Map.put("m_article_title", "题目" + i);
 			tmp_Map.put("m_article_content", "文章简要内容测试, 文章简要内容测试, 文章简要内容测试");
 			tmp_Map.put("m_article_author", "Jack");
-			tmp_Map.put("m_article_logdate", "2015-10-08");
+			tmp_Map.put("m_article_total_view_num", 14135);
 			articles.add(tmp_Map);
 		}
 		mAdapter = new SimpleAdapter(getActivity(), articles, R.layout.article_item, mfrom, mto);
 		mListView.setAdapter(mAdapter);
 		
-		mListView.setOnItemClickListener(new OnItemClickListener() {
-
-			@SuppressWarnings("unchecked")
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view, int position,
-					long id) {
-				// TODO Auto-generated method stub
-				Map<String, Object> _map = (Map<String, Object>) mAdapter.getItem(position);
-				String m_article_title = (String) _map.get("m_article_title");
-				String m_article_content = (String) _map.get("m_article_content");
-				String m_article_authorLogdate = (String) _map.get("m_article_authorLogdate");
-				Toast.makeText(getActivity(), m_article_title + ", " + m_article_content + ", " + m_article_authorLogdate, Toast.LENGTH_LONG).show();
-			}
-		});
+		mListView.setOnItemClickListener(mOnItemClickListener);
 	}
 	
+	
+	private OnItemClickListener mOnItemClickListener = new OnItemClickListener() {
+
+		@SuppressWarnings("unchecked")
+		@Override
+		public void onItemClick(AdapterView<?> parent, View view, int position,
+				long id) {
+			// TODO Auto-generated method stub
+			Map<String, Object> _map = (Map<String, Object>) mAdapter.getItem(position);
+			String m_article_title = (String) _map.get("m_article_title");
+			String m_article_content = (String) _map.get("m_article_content");
+			String m_article_authorLogdate = (String) _map.get("m_article_authorLogdate");
+			
+			Bundle mBundle = new Bundle();
+			mBundle.putString("m_article_title", m_article_title);
+			mBundle.putString("m_article_content", m_article_content);
+			mBundle.putString("m_article_authorLogdate", m_article_authorLogdate);
+			
+			Intent mIntent = new Intent(getActivity(), ArticleItemActivity.class);
+			mIntent.putExtras(mBundle);
+			
+			startActivity(mIntent);
+		}
+	};
 }

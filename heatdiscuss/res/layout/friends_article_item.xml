@@ -1,104 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="130dp"
     android:orientation="vertical" 
     android:background="#ffffff"
+    android:layout_gravity="center"
     >
-    
-	<ImageView 
-	    android:id="@+id/friends_article_image"
-	    android:layout_width="match_parent"
-	    android:layout_height="100dp"
-	    android:src="@drawable/friends_article_img1"
-	    android:scaleType="centerCrop"
-	    android:layout_marginBottom="5dp"
-	    />
-	
-	<LinearLayout
-	    android:id="@+id/friends_article_authorLogdate"
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content"
-	    android:orientation="horizontal"
-	    
-	    >
-	    
-	    <TextView
-            android:id="@+id/friends_article_author"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:textColor="#C0C0C0"
-            android:text="Jack"
-            android:layout_marginLeft="5dp"
-            >
-        </TextView>
-	    
-	    <!-- 填充中间的弹性空间 -->
-	    <TextView 
-	        android:id="@+id/friends_article_insertion" 
-	        android:layout_width="0dp" 
-	        android:layout_weight="1"
-	        android:layout_height="match_parent"
-	        />
-	    
-	    <TextView 
-	        android:id="@+id/friends_article_logdate"
-	        android:layout_width="wrap_content"
-	        android:layout_height="match_parent"
-	        android:textColor="#C0C0C0"
-	        android:text="2015-10-18"
-	        android:layout_marginRight="5dp"
-	        />
-	    
-	  </LinearLayout>  
-	    
-	 <LinearLayout 
-	     android:id="@+id/friends_article_collectionZan"
-	     android:layout_width="match_parent"
-	     android:layout_height="wrap_content" 
-	     android:orientation="horizontal"
-	     android:layout_marginTop="5dp"
-	     android:layout_marginBottom="5dp"
-	     >
-	    <ImageView
-            android:id="@+id/friends_article_collection_img"
-            android:layout_width="wrap_content"
-            android:layout_height="15sp"
-            android:src="@drawable/article_collect_not"
-            android:layout_marginLeft="5dp"
-            >
-        </ImageView>
-           
-        <TextView
-           android:id="@+id/friends_article_collection_num"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:textSize="15sp"
-           android:textColor="#C0C0C0"
-           android:text="110"
-           android:layout_marginLeft="5dp" >
-        </TextView>
-           
-        <ImageView
-            android:id="@+id/friends_article_zan_img"
-            android:layout_width="wrap_content"
-            android:layout_height="15sp"
-            android:src="@drawable/article_zan"
-            android:layout_marginLeft="10dp"
-            >
-        </ImageView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="5dip"
+        >
         
-        <TextView
-            android:id="@+id/friends_article_zan_num"
-            android:layout_width="wrap_content"
+        <ImageView
+	        android:id="@+id/friends_article_image"
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        android:scaleType="centerCrop"
+	        android:gravity="center"
+	        android:src="@drawable/friends_article_img1" 
+	        android:layout_alignParentTop="true"
+	        android:layout_centerHorizontal="true"
+	        />
+        
+        <TextView 
+            android:id="@+id/friends_article_author"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
-	        android:textColor="#C0C0C0"
-	        android:text="110"
+            android:gravity="center"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:background="#00bfff"
+            android:textColor="#fdffff"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:text="Jack"
+            />
+            
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:gravity="center"
+            android:layout_alignParentBottom="true"
+            android:background="#80000000"
+            >
+            <TextView 
+	            android:id="@+id/friends_article_title"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:layout_marginLeft="5dp"
+	            android:gravity="center|left"
+	            android:textColor="#fdffff"
+	            android:maxLines="1"
+	            android:ellipsize="end"
+	            android:text="这是测试的文章题目"
+	            />
+        </RelativeLayout>
+
+    </RelativeLayout>
+	
+	<LinearLayout 
+	    android:layout_width="match_parent"
+	    android:layout_height="25dp"
+	    android:orientation="horizontal"
+	 	android:gravity="center"
+	 	android:layout_gravity="center"
+	 	android:background="#efefef"
+	    >
+        
+	    <TextView
+	        android:id="@+id/friends_article_logdate"
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"
 	        android:layout_marginLeft="5dp"
-         	>
-        </TextView>
+	        android:textColor="#909090"
+	        android:maxLines="1"
+	        android:ellipsize="end"
+	        android:text="2015-10-22"
+	        />
+	    
+        <LinearLayout 
+	    	android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+		    android:layout_weight="1"
+		    android:orientation="horizontal"
+		 	android:gravity="right|center"
+		    >
+		    
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/view_black"
+                />
+            
+            <TextView
+                android:id="@+id/friends_article_total_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="2dp"
+                android:layout_gravity="right|center"
+                android:textColor="#909090"
+		        android:maxLines="1"
+		        android:ellipsize="end"
+		        android:text="13145"
+                />
+	    </LinearLayout>
+	    
 	</LinearLayout>
+	
+	
     
 </LinearLayout>

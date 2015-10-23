@@ -34,7 +34,7 @@ public class FriendsArticleFragment extends Fragment{
 	private String[] authorStrings = {"魔声", "Andy", "Nick", "生兴华", "骆越自卫", "AK47", "娃哈哈", "Curry", "Noah", "Tim Doncum"};
 	private String[] logdateStrings = {"2015-09-28", "2015-10-01", "2015-10-02", "2015-10-03", "2015-10-04", "2015-10-05", "2015-10-06", "2015-10-07", "2015-10-08", "2015-10-09"};
 	private int[] collections = {110, 220, 112, 143, 500, 706, 998, 1120, 584, 334};
-	private int[] zans = {234, 400, 88, 355, 677, 876, 1000, 567, 398, 887};
+	private int[] totalView = {234, 400, 88, 355, 677, 876, 1000, 567, 398, 887};
 	private int[] imgStrings = {R.drawable.friends_article_img1, R.drawable.friends_article_img2, R.drawable.friends_article_img3, 
 								R.drawable.friends_article_img4, R.drawable.friends_article_img5, R.drawable.friends_article_img6,
 								R.drawable.friends_article_img7, R.drawable.friends_article_img8, R.drawable.friends_article_img9,
@@ -75,18 +75,18 @@ public class FriendsArticleFragment extends Fragment{
 //			m_articlesList.add(_map);
 //		}
 		
-		String[] mfrom = {"friends_article_image", "friends_article_author", "friends_article_logdate",
-						  "friends_article_collection_num", "friends_article_zan_num"};
-		int[] mto = {R.id.friends_article_image, R.id.friends_article_author, R.id.friends_article_logdate,
-				     R.id.friends_article_collection_num, R.id.friends_article_zan_num};
+		String[] mfrom = {"friends_article_image", "friends_article_author", "friends_article_title", 
+						  "friends_article_logdate", "friends_article_total_view" };
+		int[] mto = {R.id.friends_article_image, R.id.friends_article_author, R.id.friends_article_title,
+					 R.id.friends_article_logdate, R.id.friends_article_total_view };
 		
 		for(int i = 0; i < 10; i++) {
 			Map<String,Object> _map = new HashMap<String, Object>();
 			_map.put("friends_article_image", imgStrings[i]);
 			_map.put("friends_article_author", authorStrings[i]);
+			_map.put("friends_article_title", contentStrings[i]);
 			_map.put("friends_article_logdate", logdateStrings[i]);
-			_map.put("friends_article_collection_num", collections[i]);
-			_map.put("friends_article_zan_num", zans[i]);
+			_map.put("friends_article_total_view", totalView[i]);
 			m_articlesList.add(_map);
 		}
 		

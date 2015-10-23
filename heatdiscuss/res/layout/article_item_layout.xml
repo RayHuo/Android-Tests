@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:background="#ffffff">
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        >
+        
+        <LinearLayout 
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:gravity="center|left"
+            android:layout_marginLeft="5dp"
+            >
+            
+            <ImageView
+                android:id="@+id/article_detail_author_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/account_circle_black"
+                />
+            <TextView 
+	            android:id="@+id/article_detail_author"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_marginLeft="3dp"
+	            android:maxLines="1"
+	            android:ellipsize="end"
+	            android:text="Jack Ryan"
+	            />
+        </LinearLayout>
+
+        <TextView 
+            android:id="@+id/article_detail_type"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginRight="5dp"
+           	android:background="#00BFFF"
+            android:text="设计"
+            />
+        
+    </LinearLayout>
+
+</LinearLayout>

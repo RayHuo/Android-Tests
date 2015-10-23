@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" 
-    android:background="#C0C0C0"
+    android:background="#ffffff"
     >
 
     <!-- 
@@ -18,7 +18,10 @@
         android:id="@+id/friends_article_gridView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:horizontalSpacing="3dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:horizontalSpacing="5dp"
+        android:verticalSpacing="5dp"
         android:numColumns="2" >
     </GridView>
 
