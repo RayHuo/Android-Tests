@@ -25,6 +25,5 @@ public class ArticleItemActivity extends Activity {
 		String m_article_content = getBundle.getString("m_article_content");
 		String m_article_authorLogdate = getBundle.getString("m_article_authorLogdate");
 		
-		
 	}
 }
