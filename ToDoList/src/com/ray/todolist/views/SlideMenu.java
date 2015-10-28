@@ -63,7 +63,7 @@ public class SlideMenu extends HorizontalScrollView {
 			LinearLayout wrapper = (LinearLayout) getChildAt(0);
 			ViewGroup menu = (ViewGroup) wrapper.getChildAt(0);
 			ViewGroup content = (ViewGroup) wrapper.getChildAt(1);
-			arrow = (View) content.getChildAt(0);
+			arrow = (View) content.getChildAt(1);
 			
 			// dp to px
 			mMenuPadding = (int) TypedValue.applyDimension(

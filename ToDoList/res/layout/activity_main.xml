@@ -20,10 +20,22 @@
 	        <include layout="@layout/menu_layout" />  
 	  
 	        <RelativeLayout  
+	            android:id="@+id/main_view"
 	            android:layout_width="fill_parent"  
 	            android:layout_height="fill_parent"  
-	            android:orientation="vertical" 
+	            android:orientation="vertical"
+	            android:layout_gravity="center"
 	            android:background="#c0c0c0">  
+	            
+	            <!-- Fragment占位，在MainActivity中使用具体的自定义Fragment来替换这个 -->
+	              
+	            <LinearLayout
+	                android:id="@+id/real_fragment"
+	                android:layout_width="match_parent"
+	                android:layout_height="match_parent"
+	                android:orientation="vertical"
+	                />
+	            
 	            
 	            <ImageView
 			        android:id="@+id/switch_image"
