@@ -9,9 +9,11 @@ import java.util.Map;
 import org.w3c.dom.CDATASection;
 
 import com.ray.todolist.R;
+import com.ray.todolist.add.AddToDoItemActivity;
 import com.ray.todolist.db.DataBaseHelper;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -20,6 +22,7 @@ import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -78,9 +81,12 @@ public class ToDoFragment extends Fragment {
 //		initListData();
 //		mListView.setAdapter(mSimpleAdapter);
 		initListData2();
-		mListView.setAdapter(mListAdapter);
+		mListView.setAdapter(mSimpleAdapter);
+		
+		addItemView.setOnClickListener(addItemClickListener);
 	}
 	
+	// 这个是模拟数据
 	private void initListData() {
 		String[] mfrom = {"to_do_item_background", "to_do_item_content", "to_do_create_time", "to_do_deadline", "to_do_importance", "to_do_emergency"};
 		int[] mto = {R.id.to_do_item_background, R.id.to_do_item_content, R.id.to_do_create_time, R.id.to_do_deadline, R.id.to_do_importance, R.id.to_do_emergency};
@@ -105,44 +111,92 @@ public class ToDoFragment extends Fragment {
 		mDBHelper = new DataBaseHelper(getActivity());
 		mSQLDB = mDBHelper.getReadableDatabase();
 		
-		ContentValues cv;
-		for(int i = 0; i < mCreateTime.length; i++) {
-			cv = new ContentValues();
-	        cv.put("content", mContents + i);
-	        cv.put("background", mBackground[i]);
-	        cv.put("importance", mImportance2[i]);
-	        cv.put("emergency", mEmergency2[i]);
-	        cv.put("comment", "评论" + i);
-	        mSQLDB.insert(TABLENAME, null, cv);
-		}
-//        mSQLDB.close();
+//		ContentValues cv;
+//		for(int i = 0; i < mCreateTime.length; i++) {
+//			cv = new ContentValues();
+//	        cv.put("content", mContents + i);
+////	        cv.put("background", mBackground[i]);
+//	        cv.put("importance", mImportance2[i]);
+//	        cv.put("emergency", mEmergency2[i]);
+//	        cv.put("comment", "评论" + i);
+//	        mSQLDB.insert(TABLENAME, null, cv);
+//		}
+////        mSQLDB.close();
 	}
 	
 	@SuppressWarnings("deprecation")
 	private void initListData2() {
 		// mfrom 中的字符串需要跟数据库表格中的对应一致
-		String[] mfrom = {"content", "background", "create_time", "deadline", "importance", "emergency"};
-		int[] mto = {R.id.to_do_item_content, R.id.to_do_item_background, R.id.to_do_create_time, R.id.to_do_deadline, R.id.to_do_importance, R.id.to_do_emergency};
+//		String[] mfrom = {"content", "background", "create_time", "deadline", "importance", "emergency"};
+//		int[] mto = {R.id.to_do_item_content, R.id.to_do_item_background, R.id.to_do_create_time, R.id.to_do_deadline, R.id.to_do_importance, R.id.to_do_emergency};
 		
 		/*
 		 * item_id as _id 是为了满足 SimpleCursorAdapter的特定需求，其要求表中必需有一个字段名为"_id"
 		 * */
 		Cursor cur = mSQLDB.rawQuery("select *, item_id as _id from " + TABLENAME, null);
-		// 如果实在没有办法就遍历cur，把它里边的内容赋值给一个 Map<String, Object> 对象
 		getActivity().startManagingCursor(cur);
-		mListAdapter = new SimpleCursorAdapter(getActivity(), R.layout.to_do_item, cur, mfrom, mto);
+//		mListAdapter = new SimpleCursorAdapter(getActivity(), R.layout.to_do_item, cur, mfrom, mto);
+		
+		String[] mfrom = {"to_do_item_background", "to_do_item_content", "to_do_create_time", "to_do_deadline", "to_do_importance", "to_do_emergency"};
+		int[] mto = {R.id.to_do_item_background, R.id.to_do_item_content, R.id.to_do_create_time, R.id.to_do_deadline, R.id.to_do_importance, R.id.to_do_emergency};
+		mToDoListData = new ArrayList<Map<String, Object>>();
+		Map<String, Object> tmp_map = null;
+		while(cur.moveToNext()) {
+			tmp_map = new HashMap<String, Object>();
+			
+			tmp_map.put("to_do_item_content", cur.getString(cur.getColumnIndex("content")));
+			tmp_map.put("to_do_create_time", "创建时间 : " + cur.getString(cur.getColumnIndex("create_time")));
+			tmp_map.put("to_do_deadline", "截至时间 : " + cur.getString(cur.getColumnIndex("deadline")));
+			
+			int ipot = cur.getInt(cur.getColumnIndex("importance"));
+			int emg = cur.getInt(cur.getColumnIndex("emergency"));
+			String ipotStr = ipot == 1 ? "重要" : "不重要";
+			String emgStr = emg == 1 ? "紧急" : "不紧急";
+			tmp_map.put("to_do_importance", ipotStr);
+			tmp_map.put("to_do_emergency", emgStr);
+			
+			int backgroundColor = -1;
+			if(ipot == 1 && emg == 1) {
+				backgroundColor = R.drawable.important_emergency;
+			}
+			if(ipot == 1 && emg == 0) {
+				backgroundColor = R.drawable.important_noemergency;
+			}
+			if(ipot == 0 && emg == 1) {
+				backgroundColor = R.drawable.noimportant_emergency;
+			}
+			if(ipot == 0 && emg == 0) {
+				backgroundColor = R.drawable.noimportant_noemergency;
+			}
+			tmp_map.put("to_do_item_background", backgroundColor);
+			
+			mToDoListData.add(tmp_map);
+		}
+		mSimpleAdapter = new SimpleAdapter(getActivity(), mToDoListData, R.layout.to_do_item, mfrom, mto);
+		getActivity().stopManagingCursor(cur);
+
 	}
+	
+	
+	private OnClickListener addItemClickListener = new OnClickListener() {
+		
+		@Override
+		public void onClick(View view) {
+			// TODO Auto-generated method stub
+			Intent addtodoItem = new Intent(getActivity(), AddToDoItemActivity.class);
+//			startActivityForResult(addtodoItem, 0);
+			startActivity(addtodoItem);
+		}
+	};
 	
 	
 	@Override
 	public void onStop() {
-//		mSQLDB.close();
 		super.onStop();
 	}
 	
 	@Override
 	public void onDestroy() {
-//		mSQLDB.close();
 		super.onDestroy();
 	}
 }

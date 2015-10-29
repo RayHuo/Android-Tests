@@ -28,7 +28,6 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 					"content text, " +
 					"create_time datetime default current_timestamp, " +
 					"deadline datetime default current_timestamp, " +
-					"background integer, " +
 					"importance boolean, " +
 					"emergency boolean, " +
 					"comment text, " +
@@ -39,6 +38,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 		}
 	}
 
+	
 	@Override
 	public void onUpgrade(SQLiteDatabase arg0, int arg1, int arg2) {
 		// TODO Auto-generated method stub

@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginTop="10dp"
+    android:orientation="vertical" 
+     >
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:gravity="center"
+        >
+        <ImageView 
+            android:id="@+id/add_to_do_back"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:scaleType="fitStart"
+            android:src="@drawable/ic_back_arrow_left"
+            />
+        
+        <ImageView 
+            android:id="@+id/add_to_do_save"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:scaleType="fitEnd"
+            android:src="@drawable/ic_save"
+            />
+    </LinearLayout>
+
+    <TextView 
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="5dp"
+        android:background="#c0c0c0"
+        />
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal"
+        >
+    	
+        <ImageView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_to_do_attribute"
+            />
+
+        <RadioGroup
+            android:id="@+id/add_to_do_attribute" 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:orientation="horizontal"
+            >
+            <RadioButton
+	            android:id="@+id/add_to_do_imem"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:checked="true"
+	            android:textColor="#fd6e6e"
+	            android:text="重要-紧急"
+	             />
+	        
+	        <RadioButton
+	            android:id="@+id/add_to_do_noimem"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:textColor="#ffc67d"
+	             />
+	        
+	        <RadioButton
+	            android:id="@+id/add_to_do_imnoem"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:textColor="#cb96ee"
+	            />
+	        
+	        <RadioButton
+	            android:id="@+id/add_to_do_noimnoem"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:textColor="#36e2be"
+	            />
+        </RadioGroup>
+        
+        
+    </LinearLayout>
+    
+
+        
+    <TextView 
+        android:id="@+id/add_to_do_item_create_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:textSize="15sp"
+        android:text="创建时间 : 2015-10-29 10:37:25"
+        />
+ 
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        >
+        
+        <TextView 
+	        android:layout_width="wrap_content"
+	        android:layout_height="match_parent"
+	        android:layout_gravity="center"
+	        android:gravity="center"
+	        android:textSize="15sp"
+	        android:text="截至时间 : "
+	        />
+        
+        <Button 
+            android:id="@+id/add_to_do_item_deadline_date"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:background="#ffffff"
+            android:inputType="none"
+            android:textSize="15sp"
+            android:text="2015-10-30"
+            
+            />
+        
+        <Button 
+            android:id="@+id/add_to_do_item_deadline_time"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:background="#ffffff"
+            android:layout_marginLeft="3dp"
+            android:inputType="none"
+            android:textSize="15sp"
+            android:text="10:34:56"
+            
+            />
+        
+    </LinearLayout>
+    
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal"
+        >
+        
+        <ImageView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_add_to_do_alarm"
+            />
+
+        <!-- 选择提前多少时间提醒，默认是不提醒 -->
+        <Spinner
+            android:id="@+id/add_to_do_alarm_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" 
+            android:layout_marginLeft="10dp"/>
+        
+    </LinearLayout>
+    
+    <TextView 
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="5dp"
+        android:background="#c0c0c0"
+        />
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        >
+        
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="内容"
+            />
+
+ 		<EditText 
+            android:id="@+id/add_to_do_item_content"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="请输入待办内容"
+            android:layout_marginLeft="10dp"
+            />
+        
+    </LinearLayout>
+    
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal"
+        >
+        
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="备注"
+            />
+
+        <EditText
+            android:id="@+id/add_to_do_item_comment"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+			android:hint="请输入备注内容"
+            android:layout_marginLeft="10dp"
+            android:inputType="textMultiLine" 
+            />
+        
+    </LinearLayout>
+    
+</LinearLayout>

@@ -30,6 +30,13 @@
             >  
         </activity>
         
+        <activity 
+            android:name="com.ray.todolist.add.AddToDoItemActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            >  
+        </activity>
+        
     </application>
 
 </manifest>

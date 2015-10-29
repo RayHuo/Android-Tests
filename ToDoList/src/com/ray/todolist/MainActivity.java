@@ -88,6 +88,11 @@ public class MainActivity extends FragmentActivity {
 		mListView.setAdapter(mSimpleAdapter);
 		mListView.setDivider(null);
 		mListView.setOnItemClickListener(mOnItemClickListener);
+		
+		// 默认显示“待办事项”
+		FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+		ft.replace(R.id.real_fragment, new ToDoFragment());
+        ft.commit();
 	}
 
 	private void initListData() {
@@ -149,6 +154,7 @@ public class MainActivity extends FragmentActivity {
 			
 		}
 	};
+
 	
 	
 	@Override
@@ -156,6 +162,17 @@ public class MainActivity extends FragmentActivity {
 		super.onDestroy();
 	}
 	
+	@Override
+	protected void onPause() {
+	    // TODO Auto-generated method stub
+	    super.onPause();
+	}
+	
+	@Override
+	protected void onStop() {
+	    // TODO Auto-generated method stub
+	    super.onStop();
+	}
 	
 	@Override
 	protected void onResume() {
