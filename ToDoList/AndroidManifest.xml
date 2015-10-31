@@ -37,6 +37,20 @@
             >  
         </activity>
         
+        <activity 
+            android:name="com.ray.todolist.search.SearchActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            >  
+        </activity>
+        
+        <activity 
+            android:name="com.ray.todolist.search.SearchResultActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            >  
+        </activity>
+        
     </application>
 
 </manifest>

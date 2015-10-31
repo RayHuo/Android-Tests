@@ -11,6 +11,7 @@ import org.w3c.dom.CDATASection;
 import com.ray.todolist.R;
 import com.ray.todolist.add.AddToDoItemActivity;
 import com.ray.todolist.db.DataBaseHelper;
+import com.ray.todolist.search.SearchActivity;
 
 import android.content.ContentValues;
 import android.content.Intent;
@@ -37,7 +38,7 @@ public class ToDoFragment extends Fragment {
 	
 	private View rootView = null;
 	
-	private SearchView todoSearchView = null;
+	private ImageView todoSearchView = null;
 	private ImageView addItemView = null;
 	private ListView mListView = null;
 	private SimpleAdapter mSimpleAdapter = null;
@@ -64,7 +65,7 @@ public class ToDoFragment extends Fragment {
 		
 		initDataBase();
 		initView();
-		initListener();
+		prepareListener();
 		
 		mSQLDB.close();
 		return rootView;
@@ -72,18 +73,20 @@ public class ToDoFragment extends Fragment {
 	
 	
 	private void initView() {
-		todoSearchView = (SearchView) rootView.findViewById(R.id.to_do_search);
+		todoSearchView = (ImageView) rootView.findViewById(R.id.to_do_search);
 		addItemView = (ImageView) rootView.findViewById(R.id.add_to_do_item);
 		mListView = (ListView) rootView.findViewById(R.id.to_do_list);
 	}
 	
-	private void initListener() {
+	private void prepareListener() {
 //		initListData();
 //		mListView.setAdapter(mSimpleAdapter);
 		initListData2();
 		mListView.setAdapter(mSimpleAdapter);
 		
 		addItemView.setOnClickListener(addItemClickListener);
+		
+		todoSearchView.setOnClickListener(searchClickListener);
 	}
 	
 	// 这个是模拟数据
@@ -186,6 +189,18 @@ public class ToDoFragment extends Fragment {
 			Intent addtodoItem = new Intent(getActivity(), AddToDoItemActivity.class);
 //			startActivityForResult(addtodoItem, 0);
 			startActivity(addtodoItem);
+		}
+	};
+	
+	
+	private OnClickListener searchClickListener = new OnClickListener() {
+		
+		@Override
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+			Intent mIntent = new Intent(getActivity(), SearchActivity.class);
+			getActivity().startActivity(mIntent);
+			getActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
 		}
 	};
 	

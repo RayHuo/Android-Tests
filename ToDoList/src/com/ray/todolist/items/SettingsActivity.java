@@ -15,14 +15,14 @@ public class SettingsActivity extends Activity {
 		setContentView(R.layout.settings_layout);
 		
 		initView();
-		initListener();
+		prepareListener();
 	}
 
 	private void initView() {
 		
 	}
 	
-	private void initListener() {
+	private void prepareListener() {
 		
 	}
 }

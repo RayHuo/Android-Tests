@@ -18,19 +18,22 @@
         android:gravity="right|center"
         >
 
-        <android.support.v7.widget.SearchView
+        <ImageView
             android:id="@+id/to_do_search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_gravity="center"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_search_black"
             >         
-        </android.support.v7.widget.SearchView>
+        </ImageView>
         
         <ImageView 
             android:id="@+id/add_to_do_item"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_gravity="center"
+            android:scaleType="fitXY"
             android:src="@drawable/ic_add_to_do_item"
             />
   

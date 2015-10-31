@@ -62,7 +62,7 @@ public class MainActivity extends FragmentActivity {
 		setContentView(R.layout.activity_main);
 		
 		initView();
-		initListener();
+		prepareListener();
 	}
 	
 	
@@ -74,7 +74,7 @@ public class MainActivity extends FragmentActivity {
 		inflater = getLayoutInflater();
 	}
 	
-	private void initListener() {
+	private void prepareListener() {
 		switchImage.setOnClickListener(new OnClickListener() {
 			
 			@Override

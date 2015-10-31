@@ -67,7 +67,7 @@ public class AddToDoItemActivity extends Activity {
 		
 		initDataBase();
 		initView();
-		initListener();
+		prepareListener();
 		
 	}
 	
@@ -101,7 +101,7 @@ public class AddToDoItemActivity extends Activity {
 	
 	
 	
-	private void initListener() {
+	private void prepareListener() {
 		// »ØÍË°´Å¥
 		addToDoBack.setOnClickListener(new OnClickListener() {
 			
