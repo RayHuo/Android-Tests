@@ -12,6 +12,7 @@ import com.ray.todolist.R;
 import com.ray.todolist.add.AddToDoItemActivity;
 import com.ray.todolist.db.DataBaseHelper;
 import com.ray.todolist.search.SearchActivity;
+import com.ray.todolist.views.ToDoItemActivity;
 
 import android.content.ContentValues;
 import android.content.Intent;
@@ -19,6 +20,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -82,6 +84,7 @@ public class ToDoFragment extends Fragment {
 //		mListView.setAdapter(mSimpleAdapter);
 		initListData2();
 		mListView.setAdapter(mSimpleAdapter);
+		mListView.setOnClickListener(itemOnClickListener);
 		
 		addItemView.setOnClickListener(addItemClickListener);
 		
@@ -146,6 +149,8 @@ public class ToDoFragment extends Fragment {
 		while(cur.moveToNext()) {
 			tmp_map = new HashMap<String, Object>();
 			
+			tmp_map.put("to_do_id", cur.getString(cur.getColumnIndex("_id")));		// 
+			tmp_map.put("to_do_item_comment", cur.getString(cur.getColumnIndex("comment")));
 			tmp_map.put("to_do_item_content", cur.getString(cur.getColumnIndex("content")));
 			tmp_map.put("to_do_create_time", "创建时间 : " + cur.getString(cur.getColumnIndex("create_time")));
 			tmp_map.put("to_do_deadline", "截至时间 : " + cur.getString(cur.getColumnIndex("deadline")));
@@ -180,6 +185,28 @@ public class ToDoFragment extends Fragment {
 	}
 	
 	
+	
+	private OnClickListener itemOnClickListener = new OnClickListener() {
+		
+		@Override
+		public void onClick(View view) {
+			// TODO Auto-generated method stub
+			Map<String, Object> m_item = mToDoListData.get(view.getId());	// 当前点击项的内容
+			
+			Intent itemIntent = new Intent(getActivity(), ToDoItemActivity.class);
+			itemIntent.putExtra("to_do_id", m_item.get("to_do_id").toString());
+			itemIntent.putExtra("to_do_item_content", m_item.get("to_do_item_content").toString());
+			itemIntent.putExtra("to_do_create_time", m_item.get("to_do_create_time").toString());
+			itemIntent.putExtra("to_do_deadline", m_item.get("to_do_deadline").toString());
+			itemIntent.putExtra("to_do_importance", m_item.get("to_do_importance").toString());
+			itemIntent.putExtra("to_do_emergency", m_item.get("to_do_emergency").toString());
+			itemIntent.putExtra("item_id", m_item.get("to_do_id").toString());
+			
+			startActivity(itemIntent);
+		}
+	};
+	
+	
 	private OnClickListener addItemClickListener = new OnClickListener() {
 		
 		@Override
@@ -198,6 +225,7 @@ public class ToDoFragment extends Fragment {
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
 			Intent mIntent = new Intent(getActivity(), SearchActivity.class);
+			mIntent.putExtra("table_name", TABLENAME);
 			getActivity().startActivity(mIntent);
 			getActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
 		}

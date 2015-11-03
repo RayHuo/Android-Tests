@@ -15,9 +15,14 @@ import com.ray.todolist.views.SlideMenu;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.*;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -155,6 +160,43 @@ public class MainActivity extends FragmentActivity {
 		}
 	};
 
+	
+	/**
+	 * 捕捉back，退出程序
+	 */
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+			ExitDialog(MainActivity.this).show();
+			return true;
+		}
+		
+		return super.onKeyDown(keyCode, event);
+	}
+	
+	
+	/**
+	 * 提示退出系统
+	 * @param context
+	 * @return
+	 */
+    private Dialog ExitDialog(Context context) {
+		AlertDialog.Builder builder = new AlertDialog.Builder(context);
+		builder.setTitle("系统信息");
+		builder.setMessage("确定要退出程序吗?");
+		builder.setPositiveButton("确定",
+				new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int whichButton) {		   
+						finish();
+					}
+				});
+		builder.setNegativeButton("取消",
+				new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int whichButton) {
+					}
+				});
+		return builder.create();
+	}
 	
 	
 	@Override

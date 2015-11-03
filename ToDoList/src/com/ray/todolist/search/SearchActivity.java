@@ -17,6 +17,7 @@ public class SearchActivity extends Activity {
 	private ImageView searchBack = null;
 	private ImageView searchGo = null;
 	private AutoCompleteTextView searchText = null;
+	private String searchTableName = "";
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -34,6 +35,8 @@ public class SearchActivity extends Activity {
 		searchBack = (ImageView) findViewById(R.id.search_back);
 		searchGo = (ImageView) findViewById(R.id.search_go);
 		searchText = (AutoCompleteTextView) findViewById(R.id.search_text);
+		
+		searchTableName = getIntent().getStringExtra("table_name");
 	}
 	
 	private void prepareListener() {
@@ -55,7 +58,8 @@ public class SearchActivity extends Activity {
 				// TODO Auto-generated method stub
 				
 				Intent mIntent = new Intent(SearchActivity.this, SearchResultActivity.class);
-				mIntent.putExtra("searchText", searchText.getText().toString());
+				mIntent.putExtra("search_text", searchText.getText().toString());
+				mIntent.putExtra("table_name", searchTableName);
 				startActivity(mIntent);
 				
 			}
