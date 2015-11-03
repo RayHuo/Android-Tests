@@ -46,7 +46,6 @@ public class SearchActivity extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				finish();
-				System.exit(0);
 			}
 		});
 		

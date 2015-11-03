@@ -25,6 +25,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -68,7 +70,6 @@ public class ToDoFragment extends Fragment {
 		initView();
 		prepareListener();
 		
-		mSQLDB.close();
 		return rootView;
 	}
 	
@@ -84,7 +85,7 @@ public class ToDoFragment extends Fragment {
 //		mListView.setAdapter(mSimpleAdapter);
 		initListData2();
 		mListView.setAdapter(mSimpleAdapter);
-		mListView.setOnClickListener(itemOnClickListener);
+		mListView.setOnItemClickListener(itemOnClickListener);
 		
 		addItemView.setOnClickListener(addItemClickListener);
 		
@@ -102,8 +103,8 @@ public class ToDoFragment extends Fragment {
 			tmp_map = new HashMap<String, Object>();
 			tmp_map.put("to_do_item_background", mBackground[i]);
 			tmp_map.put("to_do_item_content", mContents + i);
-			tmp_map.put("to_do_create_time", "创建时间 : " + mCreateTime[i]);
-			tmp_map.put("to_do_deadline", "截至时间 : " + mDeadline[i]);
+			tmp_map.put("to_do_create_time", mCreateTime[i]);
+			tmp_map.put("to_do_deadline", mDeadline[i]);
 			tmp_map.put("to_do_importance", mImportance[i]);
 			tmp_map.put("to_do_emergency", mEmergency[i]);
 			mToDoListData.add(tmp_map);
@@ -149,11 +150,11 @@ public class ToDoFragment extends Fragment {
 		while(cur.moveToNext()) {
 			tmp_map = new HashMap<String, Object>();
 			
-			tmp_map.put("to_do_id", cur.getString(cur.getColumnIndex("_id")));		// 
+			tmp_map.put("to_do_id", cur.getInt(cur.getColumnIndex("_id")));	
 			tmp_map.put("to_do_item_comment", cur.getString(cur.getColumnIndex("comment")));
 			tmp_map.put("to_do_item_content", cur.getString(cur.getColumnIndex("content")));
-			tmp_map.put("to_do_create_time", "创建时间 : " + cur.getString(cur.getColumnIndex("create_time")));
-			tmp_map.put("to_do_deadline", "截至时间 : " + cur.getString(cur.getColumnIndex("deadline")));
+			tmp_map.put("to_do_create_time", cur.getString(cur.getColumnIndex("create_time")));
+			tmp_map.put("to_do_deadline", cur.getString(cur.getColumnIndex("deadline")));
 			
 			int ipot = cur.getInt(cur.getColumnIndex("importance"));
 			int emg = cur.getInt(cur.getColumnIndex("emergency"));
@@ -186,24 +187,27 @@ public class ToDoFragment extends Fragment {
 	
 	
 	
-	private OnClickListener itemOnClickListener = new OnClickListener() {
-		
+	private OnItemClickListener itemOnClickListener = new OnItemClickListener() {
+
 		@Override
-		public void onClick(View view) {
+		public void onItemClick(AdapterView<?> view, View parent, int position,
+				long id) {
 			// TODO Auto-generated method stub
-			Map<String, Object> m_item = mToDoListData.get(view.getId());	// 当前点击项的内容
+			Map<String, Object> m_item = mToDoListData.get(position);	// 当前点击项的内容
 			
 			Intent itemIntent = new Intent(getActivity(), ToDoItemActivity.class);
 			itemIntent.putExtra("to_do_id", m_item.get("to_do_id").toString());
 			itemIntent.putExtra("to_do_item_content", m_item.get("to_do_item_content").toString());
+			itemIntent.putExtra("to_do_item_comment", m_item.get("to_do_item_comment").toString());
 			itemIntent.putExtra("to_do_create_time", m_item.get("to_do_create_time").toString());
 			itemIntent.putExtra("to_do_deadline", m_item.get("to_do_deadline").toString());
 			itemIntent.putExtra("to_do_importance", m_item.get("to_do_importance").toString());
 			itemIntent.putExtra("to_do_emergency", m_item.get("to_do_emergency").toString());
-			itemIntent.putExtra("item_id", m_item.get("to_do_id").toString());
 			
 			startActivity(itemIntent);
 		}
+		
+		
 	};
 	
 	
@@ -233,6 +237,13 @@ public class ToDoFragment extends Fragment {
 	
 	
 	@Override
+	public void onResume() {
+		super.onResume();
+		initListData2();
+		mListView.setAdapter(mSimpleAdapter);
+	}
+	
+	@Override
 	public void onStop() {
 		super.onStop();
 	}
@@ -240,5 +251,6 @@ public class ToDoFragment extends Fragment {
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
+		mSQLDB.close();
 	}
 }

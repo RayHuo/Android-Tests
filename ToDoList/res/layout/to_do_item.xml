@@ -45,22 +45,49 @@
 	            android:layout_weight="1"
 	            android:orientation="vertical"
 	            >
-	            <TextView 
-	                android:id="@+id/to_do_create_time"
-	                android:layout_width="match_parent"
+	            <LinearLayout 
+	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"
-	                android:maxLines="1"
-	                android:ellipsize="end"
-	                android:text="Create : 2015-10-22 14:29:48"
-	                />
-	            <TextView 
-	                android:id="@+id/to_do_deadline"
-	                android:layout_width="match_parent"
+	                android:orientation="horizontal"
+	                >
+	                <TextView 
+		                android:layout_width="wrap_content"
+		                android:layout_height="wrap_content"
+		                android:maxLines="1"
+		                android:ellipsize="end"
+		                android:text="最后更新时间 : "
+		                />
+	                <TextView 
+		                android:id="@+id/to_do_create_time"
+		                android:layout_width="wrap_content"
+		                android:layout_height="wrap_content"
+		                android:maxLines="1"
+		                android:ellipsize="end"
+		                android:text="2015-10-22 14:29:48"
+		                />
+	            </LinearLayout>
+	            
+	            <LinearLayout 
+	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"
-	                android:maxLines="1"
-	                android:ellipsize="end"
-	                android:text="DeadLine : 2015-10-25 18:49:59"
-	                />
+	                android:orientation="horizontal"
+	                >
+	                <TextView 
+		                android:layout_width="wrap_content"
+		                android:layout_height="wrap_content"
+		                android:maxLines="1"
+		                android:ellipsize="end"
+		                android:text="截至时间 : "
+		                />
+		            <TextView 
+		                android:id="@+id/to_do_deadline"
+		                android:layout_width="wrap_content"
+		                android:layout_height="wrap_content"
+		                android:maxLines="1"
+		                android:ellipsize="end"
+		                android:text="2015-10-25 18:49:59"
+		                />
+	            </LinearLayout>
 	        </LinearLayout>
 	        
 	        <LinearLayout 

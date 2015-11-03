@@ -10,6 +10,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 	private static final String DATABASENAME = "todolist.db";
 	private static final int DATABASEVERSION = 1;
 	private static final String ITEMS_TABLENAME = "to_do_items";
+	private static final String NOTIFY_TABLENAME = "notifications";
 	private static final String USERS_TABLENAME = "users";
 	
 	// 创建数据库
@@ -23,6 +24,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 	public void onCreate(SQLiteDatabase db) {
 		// TODO Auto-generated method stub
 		try {
+			// 创建“待办事项”数据表
 			String createItemsTable = "create table " + ITEMS_TABLENAME + 
 					" (item_id integer primary key autoincrement, " +
 					"content text, " +
@@ -33,6 +35,12 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 					"comment text, " +
 					"alarm datetime default current_timestamp)";
 			db.execSQL(createItemsTable);
+			
+			// 创建“日常闹钟”数据表
+			String createNotifyTable = "create table " + NOTIFY_TABLENAME + 
+					" (notify_id integer primary key autoincrement, " +
+					"alarm_time datetime default current_timestamp)";
+			db.execSQL(createNotifyTable);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

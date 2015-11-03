@@ -1,11 +1,23 @@
 package com.ray.todolist.views;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import javax.security.auth.PrivateCredentialPermission;
 
 import com.ray.todolist.R;
+import com.ray.todolist.add.AddToDoItemActivity;
 import com.ray.todolist.db.DataBaseHelper;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
+import android.app.DatePickerDialog.OnDateSetListener;
+import android.app.TimePickerDialog.OnTimeSetListener;
+import android.content.ContentValues;
+import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -13,12 +25,14 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 
 public class ToDoItemActivity extends Activity {
@@ -93,9 +107,9 @@ public class ToDoItemActivity extends Activity {
 		itemComment = (EditText) findViewById(R.id.to_do_item_edit_comment);
 		
 		
-		attributeIpot = args.getBoolean("importance");
-		attributeEmeg = args.getBoolean("emergency");
-		initAttribute();
+		String iptStr = args.getString("to_do_importance");
+		String emgStr = args.getString("to_do_emergency");
+		initAttribute(iptStr, emgStr);
 	}
 	
 	
@@ -125,6 +139,21 @@ public class ToDoItemActivity extends Activity {
 			public void onClick(View view) {
 				// TODO Auto-generated method stub
 				setAllEditableState(false);	// 全部改为不可编辑
+				
+				SimpleDateFormat sDateFormat2 = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss");
+				// 把更新保存到数据库
+				ContentValues cv = new ContentValues();
+				cv.put("content", itemContent.getText().toString());
+				cv.put("create_time", sDateFormat2.format(new Date()));	 	// 这个就是默认当前时间，所以不需要添加到数据库
+				cv.put("deadline", itemDeadlineDate.getText().toString() + " " + itemDeadlineTime.getText().toString());
+				cv.put("importance", attributeIpot);
+				cv.put("emergency", attributeEmeg);
+				cv.put("comment", itemComment.getText().toString());
+				cv.put("alarm", sDateFormat2.format(new Date()));
+				
+				String[] idStr = new String[] { args.getString("to_do_id") };
+				int rows = mSQLDB.update(TABLENAME, cv, "item_id=?", idStr);
+				System.out.println("update rows " + rows);
 			}
 		});
 		
@@ -134,9 +163,9 @@ public class ToDoItemActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				int item_id = args.getInt("to_do_id");
-				String[] id = { Integer.toString(item_id) };
-				mSQLDB.delete(TABLENAME, "_id=?", id);
+				String[] id = { args.getString("to_do_id") };
+				int rows = mSQLDB.delete(TABLENAME, "item_id=?", id);
+				System.out.println("delete rows " + rows);
 				finish();
 			}
 		});
@@ -180,6 +209,51 @@ public class ToDoItemActivity extends Activity {
 		itemDeadlineDate.setText(deadlineStr.substring(0, 10));
 		itemDeadlineTime.setText(deadlineStr.substring(11, deadlineStr.length()));
 		
+		itemDeadlineDate.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Calendar c = Calendar.getInstance();  
+                new DatePickerDialog(ToDoItemActivity.this, 
+                		new OnDateSetListener() {
+							
+							@Override
+							public void onDateSet(DatePicker view, int year, int monthOfYear,
+									int dayOfMonth) {
+								// TODO Auto-generated method stub
+								itemDeadlineDate.setText(year+"-"+(monthOfYear+1)+"-"+dayOfMonth);
+							}
+						}, 
+                		c.get(Calendar.YEAR), 
+                		c.get(Calendar.MONTH), 
+                		c.get(Calendar.DAY_OF_MONTH)).show();
+             
+			}
+		});
+		
+		itemDeadlineTime.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Calendar c = Calendar.getInstance();  
+				new TimePickerDialog(ToDoItemActivity.this, 
+						new OnTimeSetListener() {
+							
+							@Override
+							public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+								// TODO Auto-generated method stub
+								itemDeadlineTime.setText(hourOfDay + ":" + minute + ":00");
+							}
+						}, 
+						c.get(Calendar.HOUR_OF_DAY), 
+						c.get(Calendar.MINUTE), 
+						true).show();
+			}
+		});
+		
+		
 		
 		ArrayAdapter<String> spinner_adapter = new ArrayAdapter<String>(this, 
 				android.R.layout.simple_spinner_item, MALARMTIME);
@@ -192,19 +266,31 @@ public class ToDoItemActivity extends Activity {
 	}
 	
 	
-	private void initAttribute() {
+	private void initAttribute(String ipt, String emg) {
 		clearRadioButtonText();
-		if(attributeIpot == true && attributeEmeg == true) {
+		if(ipt.equals("重要") && emg.equals("紧急")) {
 			itemImEm.setText("重要-紧急");
+			itemImEm.setChecked(true);
+			attributeIpot = true;
+			attributeEmeg = true;
 		}
-		if(attributeIpot == false && attributeEmeg == true) {
+		if(ipt.equals("不重要") && emg.equals("紧急")) {
 			itemNoImEm.setText("不重要-紧急");
+			itemNoImEm.setChecked(true);
+			attributeIpot = false;
+			attributeEmeg = true;
 		}
-		if(attributeIpot == true && attributeEmeg == false) {
+		if(ipt.equals("重要") && emg.equals("不紧急")) {
 			itemImNoEm.setText("重要-不紧急");
+			itemImNoEm.setChecked(true);
+			attributeIpot = true;
+			attributeEmeg = false;
 		}
-		if(attributeIpot == false && attributeEmeg == false) {
+		if(ipt.equals("不重要") && emg.equals("不紧急")) {
 			itemNoImNoEm.setText("不重要-不紧急");
+			itemNoImNoEm.setChecked(true);
+			attributeIpot = false;
+			attributeEmeg = false;
 		}
 	}
 	
@@ -229,11 +315,16 @@ public class ToDoItemActivity extends Activity {
 		}
 		
 		itemAttributes.setClickable(state);
-		itemDeadlineDate.setClickable(state);
-		itemDeadlineTime.setClickable(state);
+		itemImEm.setClickable(state);
+		itemNoImEm.setClickable(state);
+		itemImNoEm.setClickable(state);
+		itemNoImNoEm.setClickable(state);
+		
+		itemDeadlineDate.setEnabled(state);
+		itemDeadlineTime.setEnabled(state);
 		itemAlarm.setClickable(state);
-		itemContent.setFocusable(state);
-		itemComment.setFocusable(state);
+		itemContent.setEnabled(state);
+		itemComment.setEnabled(state);
 	}
 	
 	

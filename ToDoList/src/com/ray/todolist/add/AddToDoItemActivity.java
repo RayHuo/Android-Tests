@@ -131,10 +131,12 @@ public class AddToDoItemActivity extends Activity {
 
 				mSQLDB.insert(TABLENAME, null, cv);
 				
-//				finish();	// 然后返回到上一级页面
-				Intent mIntent = new Intent(AddToDoItemActivity.this, MainActivity.class);
-				startActivity(mIntent);
-				System.exit(0);		// 要加这个，否则会导致返回后页面有问题
+				finish();	// 然后返回到上一级页面
+				
+				// 下面的方法也能返回，不过比较浪费资源
+//				Intent mIntent = new Intent(AddToDoItemActivity.this, MainActivity.class);
+//				startActivity(mIntent);
+//				System.exit(0);		// 要加这个，否则会导致返回后页面有问题
 			}
 		});
 		
@@ -172,7 +174,7 @@ public class AddToDoItemActivity extends Activity {
 		
 		
 		// 设置创建时间
-		SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");  
+		SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss");  
 		Date now = new Date();
 		String date = sDateFormat.format(now);
 		createTime.setText("创建时间 : " + date);
