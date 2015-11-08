@@ -9,6 +9,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView.FindListener;
+import android.widget.ImageView;
 
 public class MoodFragment extends Fragment {
 
@@ -17,6 +19,8 @@ public class MoodFragment extends Fragment {
 	private final String TABLENAME = "moods";
 	
 	private View rootView = null;
+	private ImageView moodSearch = null;
+	private ImageView moodAdd = null;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -38,7 +42,8 @@ public class MoodFragment extends Fragment {
 	
 	
 	private void initView() {
-		
+		moodSearch = (ImageView) rootView.findViewById(R.id.mood_search);
+		moodAdd = (ImageView) rootView.findViewById(R.id.mood_add);
 	}
 	
 	private void prepareListener() {

@@ -9,9 +9,47 @@
     
     <LinearLayout 
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+		android:layout_gravity="right|center"
+		android:gravity="right|center"
         >
         
+        <ImageView 
+            android:id="@+id/mood_search"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_search_black"
+            />
+        
+        <ImageView 
+            android:id="@+id/mood_add"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:scaleType="fitXY"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/ic_add_to_do_item"
+            />
+        
     </LinearLayout>
+    
+    <ListView 
+        android:id="@+id/mood_lists"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:dividerHeight="15dp"
+        android:divider="#c0c0c0"
+        >
+        
+    </ListView>
     
 
 </LinearLayout>
