@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="350dp"
+    android:layout_marginLeft="15dp"
+    android:layout_marginRight="15dp"
+    >
+
+    <TextView
+        android:id="@+id/mood_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:textSize="20sp"
+        android:text="2015-11-10" />
+
+    <TextView
+        android:id="@+id/mood_text"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:textSize="18sp"
+        android:text="测试内容，主要是为了展现一个若干行的心情文字。谨记于二零壹五年十一月十日，莞中创校113周年。" />
+
+    <ImageView
+        android:id="@+id/mood_img"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:src="@mipmap/default_mood_img"/>
+
+</LinearLayout>

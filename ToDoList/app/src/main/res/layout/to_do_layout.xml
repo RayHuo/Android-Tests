@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginTop="10dp"
+    android:orientation="vertical" 
+    android:background="#c0c0c0"
+    android:layout_gravity="center"
+     >
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:gravity="right|center"
+        >
+
+        <ImageView
+            android:id="@+id/to_do_search"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:scaleType="fitXY"
+            android:src="@mipmap/ic_search_black"
+            >         
+        </ImageView>
+        
+        <ImageView 
+            android:id="@+id/add_to_do_item"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:scaleType="fitXY"
+            android:src="@mipmap/ic_add_to_do_item"
+            />
+  
+    </LinearLayout>
+   
+    <ListView 
+        android:id="@+id/to_do_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:dividerHeight="15dp"
+        android:divider="#c0c0c0"
+        >
+    </ListView>
+    
+
+</LinearLayout>
