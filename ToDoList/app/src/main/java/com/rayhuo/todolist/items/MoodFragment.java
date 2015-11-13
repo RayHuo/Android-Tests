@@ -21,12 +21,12 @@ import android.widget.SimpleAdapter;
 import com.rayhuo.todolist.R;
 import com.rayhuo.todolist.add.AddMoodActivity;
 import com.rayhuo.todolist.db.DataBaseHelper;
+import com.rayhuo.todolist.views.MoodItemViewActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 
 
 
@@ -45,7 +45,7 @@ public class MoodFragment extends Fragment {
 	private SimpleAdapter mSimpleAdapter = null;
 	private List<Map<String, Object>> mDataList = null;
 
-	private static final int reqheight = 200;       // 目标高度
+//	private static final int reqheight = 400;       // 目标高度
 	private static final int reqwidth = 400;        // 目标宽度
 
 	
@@ -100,6 +100,7 @@ public class MoodFragment extends Fragment {
 			// 最后的 image 是一个路径，通过以让 ImageView 显示
 			String img_path = cur.getString(cur.getColumnIndex("image"));
 			tmp_map.put("mood_img", getCompressImage(img_path));
+			tmp_map.put("mood_img_path", img_path);
 
 			mDataList.add(tmp_map);
 		}
@@ -127,7 +128,16 @@ public class MoodFragment extends Fragment {
 
 		@Override
 		public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+			Bundle args = new Bundle();
+			Map<String, Object> m_item = mDataList.get(position);	// 当前点击项的内容
 
+			args.putString("mood_image", m_item.get("mood_img_path").toString());
+			args.putString("mood_content", m_item.get("content").toString());
+			args.putString("mood_date", m_item.get("mark_time").toString());
+
+			Intent intent = new Intent(getActivity(), MoodItemViewActivity.class);
+			intent.putExtras(args);
+			startActivity(intent);
 		}
 	};
 
@@ -156,14 +166,9 @@ public class MoodFragment extends Fragment {
 		BitmapFactory.decodeFile(path, opt);
 
 		// 根据分辨率对资源进行压缩，减少OOM，这里边的目标高度和宽度不能太小，否则图片会失真。centerCrop本身还会做一层压缩的
-		if (opt.outHeight >= reqheight && reqheight != 0) {
-			opt.inSampleSize = opt.outHeight / reqheight;
-			opt.outHeight = reqheight;
-			opt.outWidth = reqwidth;
-		}
-		else if (opt.outWidth >= reqwidth && reqwidth != 0) {
+		if (opt.outWidth >= reqwidth && reqwidth != 0) {
 			opt.inSampleSize = opt.outWidth / reqwidth;
-			opt.outHeight = reqheight;
+			opt.outHeight = (int)((double)opt.outHeight * ((double)reqwidth / (double)opt.outWidth));
 			opt.outWidth = reqwidth;
 		}
 		else {
@@ -177,6 +182,8 @@ public class MoodFragment extends Fragment {
 
 		return bitmap;
 	}
+
+
 
 
 	@Override

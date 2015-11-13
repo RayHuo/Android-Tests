@@ -287,14 +287,9 @@ public class AddMoodActivity extends Activity {
 
 
         // 根据分辨率对资源进行压缩，减少OOM，这里边的目标高度和宽度不能太小，否则图片会失真。centerCrop本身还会做一层压缩的
-        if (options.outHeight >= reqheight && reqheight != 0) {
-            options.inSampleSize = options.outHeight / reqheight;
-            options.outHeight = reqheight;
-            options.outWidth = reqwidth;
-        }
-        else if (options.outWidth >= reqwidth && reqwidth != 0) {
+        if (options.outWidth >= reqwidth && reqwidth != 0) {
             options.inSampleSize = options.outWidth / reqwidth;
-            options.outHeight = reqheight;
+            options.outHeight = (int)((double)options.outHeight * ((double)reqwidth / (double)options.outWidth));
             options.outWidth = reqwidth;
         }
         else {
