@@ -50,10 +50,13 @@ public class AddMoodActivity extends Activity {
 
     private static final int TAKE_PHOTO = 1;         // 相机拍照
     private static final int CAPTURE_PHOTO = 2;      // 图库获取照片
-    private static final int reqheight = 200;    // 目标高度
-    private static final int reqwidth = 400;     // 目标宽度
+    private static final int reqheight = 200;       // 目标高度
+    private static final int reqwidth = 400;        // 目标宽度
 
     private static final String[] getPhotoChoice = new String[] {"拍照", "图库", "取消"};
+
+    private SimpleDateFormat FULL_TIME_FORMAT = new SimpleDateFormat("yyyyMMddHHmmss");
+    private SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,9 +80,13 @@ public class AddMoodActivity extends Activity {
         goback = (ImageView) findViewById(R.id.new_mood_back);
         saveBtn = (ImageView) findViewById(R.id.new_mood_save);
         moodDate = (TextView) findViewById(R.id.new_mood_date);
-//        moodContent = (EditText) findViewById(R.id.new_mood_content);
+        moodContent = (EditText) findViewById(R.id.new_mood_content);
         moodImage = (ImageView) findViewById(R.id.new_mood_image);
         addMoodBtn = (ImageView) findViewById(R.id.new_mood_add_image);
+
+
+        String default_date = DATE_FORMAT.format(new Date());
+        moodDate.setText(default_date);
     }
 
 
@@ -102,19 +109,15 @@ public class AddMoodActivity extends Activity {
     private OnClickListener saveListener = new OnClickListener() {
         @Override
         public void onClick(View view) {
-
-
             ContentValues cv = new ContentValues();
-            cv.put("mood_rate", (int)(moodRating.getRating()));
-//            cv.put("content", moodContent.getText().toString());
-            cv.put("content", "测试内容，挺好的");
+            cv.put("content", moodContent.getText().toString());
+//            cv.put("content", "测试内容，挺好的");
             cv.put("image", imagePath);
-            SimpleDateFormat sDateFormat2 = new SimpleDateFormat("yyyy-MM-dd");
-            cv.put("mark_time", sDateFormat2.format(new Date()));
+            cv.put("mark_time", DATE_FORMAT.format(new Date()));
 
             mSQLDB.insert(TABLENAME, null, cv);
 
-            finish();
+            finish();   // 返回到上级页面
         }
     };
 
@@ -160,9 +163,8 @@ public class AddMoodActivity extends Activity {
     private void captureImageFromCamera() {
 
         // 以时间戳作为图片名字
-        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
         Date date = new Date(System.currentTimeMillis());
-        String filename = format.format(date) + ".jpg";
+        String filename = FULL_TIME_FORMAT.format(date) + ".jpg";
 
         File photo = null;
         String state = Environment.getExternalStorageState().toString();
@@ -220,6 +222,8 @@ public class AddMoodActivity extends Activity {
                         moodImage.setVisibility(View.VISIBLE);
                         moodImage.setImageBitmap(bitmap);
                         addMoodBtn.setVisibility(View.INVISIBLE);
+
+                        imagePath = imageUri.getPath(); // 保存到数据库中的地址
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -250,6 +254,8 @@ public class AddMoodActivity extends Activity {
                     moodImage.setVisibility(View.VISIBLE);
                     moodImage.setImageBitmap(BitmapFactory.decodeFile(picturePath, options));
                     addMoodBtn.setVisibility(View.INVISIBLE);
+
+                    imagePath = picturePath;    // 保存到数据库中的地址
                 }
                 break;
             default:

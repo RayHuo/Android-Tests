@@ -4,6 +4,8 @@ package com.rayhuo.todolist.items;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -20,7 +22,6 @@ import com.rayhuo.todolist.R;
 import com.rayhuo.todolist.add.AddMoodActivity;
 import com.rayhuo.todolist.db.DataBaseHelper;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -43,6 +44,9 @@ public class MoodFragment extends Fragment {
 
 	private SimpleAdapter mSimpleAdapter = null;
 	private List<Map<String, Object>> mDataList = null;
+
+	private static final int reqheight = 200;       // 目标高度
+	private static final int reqwidth = 400;        // 目标宽度
 
 	
 	@Override
@@ -80,7 +84,6 @@ public class MoodFragment extends Fragment {
 	}
 
 	private void initListData() {
-		String img_path2 = getStoragePath();
 		// 提取数据并转化为最后可用的数据
 		Cursor cur = mSQLDB.rawQuery("select *, mood_id as _id from " + TABLENAME, null);
 		getActivity().startManagingCursor(cur);
@@ -94,9 +97,10 @@ public class MoodFragment extends Fragment {
 			tmp_map.put("mark_time", cur.getString(cur.getColumnIndex("mark_time")));
 			tmp_map.put("content", cur.getString(cur.getColumnIndex("content")));
 
-			// 最后的 image 是一个 drawable 对象，以让 ImageView 显示
-			String img_path = getStoragePath() + "/" + cur.getString(cur.getColumnIndex("image"));	// 后者只保留照片的名字
-			tmp_map.put("mood_img", cur.getString(cur.getColumnIndex("image")));
+			// 最后的 image 是一个路径，通过以让 ImageView 显示
+			String img_path = cur.getString(cur.getColumnIndex("image"));
+			tmp_map.put("mood_img", getCompressImage(img_path));
+
 			mDataList.add(tmp_map);
 		}
 
@@ -104,6 +108,18 @@ public class MoodFragment extends Fragment {
 		int[] mto = new int[] {R.id.mood_date, R.id.mood_text, R.id.mood_img};
 		mSimpleAdapter = new SimpleAdapter(getActivity(), mDataList, R.layout.mood_item, mfrom, mto);
 
+		// 实现 SimpleAdapter 显示 bitmap 在 ImageView 上
+		mSimpleAdapter.setViewBinder(new SimpleAdapter.ViewBinder() {
+			@Override
+			public boolean setViewValue(View view, Object data, String textRepresentation) {
+				if(view instanceof ImageView && data instanceof Bitmap){
+					ImageView i = (ImageView)view;
+					i.setImageBitmap((Bitmap) data);
+					return true;
+				}
+				return false;
+			}
+		});
 	}
 
 
@@ -134,30 +150,32 @@ public class MoodFragment extends Fragment {
 	};
 
 
-	/*
-	* 判断手机是否有扩展SD卡：
-	* 有：返回SD卡上的存储图片路径
-	* 无：返回本地存储图片的路径
-	* */
-	private String getStoragePath() {
-		File pathFolder =  new File(getActivity().getFilesDir().toString() + "/ToDoDICM/");
+	private Bitmap getCompressImage(String path) {
+		BitmapFactory.Options opt = new BitmapFactory.Options();
+		opt.inJustDecodeBounds = true;
+		BitmapFactory.decodeFile(path, opt);
 
-		if (!pathFolder.exists()) { // 如果目录不存在，则创建一个名为"ToDoDICM"的目录
-			pathFolder.mkdir();
+		// 根据分辨率对资源进行压缩，减少OOM，这里边的目标高度和宽度不能太小，否则图片会失真。centerCrop本身还会做一层压缩的
+		if (opt.outHeight >= reqheight && reqheight != 0) {
+			opt.inSampleSize = opt.outHeight / reqheight;
+			opt.outHeight = reqheight;
+			opt.outWidth = reqwidth;
+		}
+		else if (opt.outWidth >= reqwidth && reqwidth != 0) {
+			opt.inSampleSize = opt.outWidth / reqwidth;
+			opt.outHeight = reqheight;
+			opt.outWidth = reqwidth;
+		}
+		else {
+			opt.inSampleSize = 1;
 		}
 
-//		String status = Environment.getExternalStorageState();
-//		// 存在外部SD卡时
-//		if(status.equals(Environment.MEDIA_MOUNTED)) {
-//			path = Environment.getExternalStorageDirectory().toString();
-//		}
-//		// 不存在外部SD卡时
-//		else {
-//			path = getActivity().getFilesDir().toString();
-//		}
-//		path = getActivity().getFilesDir().toString();
+		opt.inPurgeable = true;
+		opt.inJustDecodeBounds = false;
 
-		return pathFolder.getPath();
+		Bitmap bitmap = BitmapFactory.decodeFile(path, opt);
+
+		return bitmap;
 	}
 
 

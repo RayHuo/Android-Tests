@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_gravity="center"
     tools:context="com.rayhuo.todolist.add.AddMoodActivity">
 
     <LinearLayout
@@ -71,14 +70,31 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:background="#40E0D0" >
 
-    <!--<EditText-->
-        <!--android:id="@+id/new_mood_content"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="150dp"-->
-        <!--android:layout_marginRight="10dp"-->
-        <!--android:layout_marginLeft="10dp"-->
-        <!--android:hint="请填写心情" />-->
+        <EditText
+            android:id="@+id/new_mood_content"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:gravity="top"
+            android:background="@null"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="10dp"
+            android:hint="请填写心情" />
+
+    </LinearLayout>
+
 
     <ImageView
         android:id="@+id/new_mood_image"
@@ -97,8 +113,6 @@
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:scaleType="fitXY"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
         android:src="@mipmap/add_mood_photo"
         />
